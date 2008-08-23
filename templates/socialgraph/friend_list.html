@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load pagination_tags %}
+
+{% block main_content %}
+    {% autopaginate friends %}
+    {% for friend in friends %}
+        <p>{{ friend }}</p>
+    {% endfor %}
+    {% paginate %}
+{% endblock %}
