@@ -82,6 +82,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'events',
     'socialgraph',
+    'pagination',
 )
 
 try:

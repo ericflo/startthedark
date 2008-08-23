@@ -1,9 +1,21 @@
+from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import Http404
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from socialgraph.models import UserLink
+
+def _get_next(request):
+    """
+    1. If there is a variable named ``next`` in the *POST* parameters, the view will
+    redirect to that variable's value.
+    2. If there is a variable named ``next`` in the *GET* parameters, the view will
+    redirect to that variable's value.
+    3. If Django can determine the previous page from the HTTP headers, the view will
+    redirect to that previous page.
+    """
+    return request.POST.get('next', request.GET.get('next', request.META.get('HTTP_REFERER', None)))
 
 def friend_list(request, username, subset_func=None):
     user = get_object_or_404(User, username=username)
@@ -22,6 +34,11 @@ def follow(request, username):
     user = get_object_or_404(User, username=username)
     ul, created = UserLink.objects.get_or_create(from_user=request.user, 
         to_user=user)
+    next = _get_next(request)
+    if next and next != request.path:
+        request.user.message_set.create(
+            message=_('You are now following %s' % user.username))
+        return HttpResponseRedirect(next)
     context = {
         'other_user': user,
         'created': created,
@@ -41,6 +58,11 @@ def unfollow(request, username):
         deleted = True
     except UserLink.DoesNotExist:
         deleted = False
+    next = _get_next(request)
+    if next and next != request.path:
+        request.user.message_set.create(
+            message=_('You are no longer following %s' % user.username))
+        return HttpResponseRedirect(next)
     context = {
         'other_user': user,
         'deleted': deleted,
