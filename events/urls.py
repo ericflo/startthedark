@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('',
-    #url(),
+urlpatterns = patterns('events.views',
+    url(r'^tonight/$', 'tonight', name='ev_tonight'),
 )

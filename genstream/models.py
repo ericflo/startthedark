@@ -5,9 +5,11 @@ from django.contrib.contenttypes import generic
 
 class StreamItem(models.Model):
     user = models.ForeignKey(User)
+    
     object_id = models.PositiveIntegerField()
     content_type = models.ForeignKey(ContentType)
     content_object = generic.GenericForeignKey()
+    
     date = models.DateTimeField()
     is_new = models.BooleanField(default=True)
     
