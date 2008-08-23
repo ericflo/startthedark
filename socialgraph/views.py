@@ -17,12 +17,12 @@ def _get_next(request):
     """
     return request.POST.get('next', request.GET.get('next', request.META.get('HTTP_REFERER', None)))
 
-def friend_list(request, username, subset_func=None):
+def friend_list(request, username, friend_func=None):
     user = get_object_or_404(User, username=username)
-    if subset_func is None:
+    if friend_func is None:
         raise Http404
     context = {
-        'friends': subset_func(user),
+        'friends': friend_func(user),
     }
     return render_to_response(
         'socialgraph/friend_list.html',

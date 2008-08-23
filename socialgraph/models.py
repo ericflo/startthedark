@@ -1,10 +1,11 @@
 import datetime
 
+from django.db import models
 from django.contrib.auth.models import User
 
 class UserLink(models.Model):
-    from_user = models.ForeignKey(User)
-    to_user = models.ForeignKey(User)
+    from_user = models.ForeignKey(User, related_name='follower_set')
+    to_user = models.ForeignKey(User, related_name='following_set')
     date_added = models.DateTimeField(default=datetime.datetime.now)
 
     def __unicode__(self):
@@ -12,7 +13,7 @@ class UserLink(models.Model):
             self.to_user.username)
 
     def save(self):
-        if from_user == to_user:
+        if self.from_user == self.to_user:
             raise ValueError("Cannot follow yourself.")
         super(UserLink, self).save()
     
