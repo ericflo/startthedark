@@ -81,7 +81,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'events',
-    'genstream',
     'socialgraph',
 )
 
