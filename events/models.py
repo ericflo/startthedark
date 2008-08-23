@@ -1,5 +1,4 @@
-import datetime
-
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -15,7 +14,7 @@ class Event(models.Model):
 class Attendance(models.Model):
     user = models.ForeignKey(User)
     event = models.ForeignKey(Event)
-    registration_date = models.DateTimeField(default=datetime.datetime.now)
+    registration_date = models.DateTimeField(default=datetime.now)
     
     def __unicode__(self):
         return "%s is attending %s" % (self.user.username, self.event)

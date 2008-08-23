@@ -1,12 +1,11 @@
-import datetime
-
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 
 class UserLink(models.Model):
-    from_user = models.ForeignKey(User, related_name='follower_set')
-    to_user = models.ForeignKey(User, related_name='following_set')
-    date_added = models.DateTimeField(default=datetime.datetime.now)
+    from_user = models.ForeignKey(User, related_name='following_set')
+    to_user = models.ForeignKey(User, related_name='follower_set')
+    date_added = models.DateTimeField(default=datetime.now)
 
     def __unicode__(self):
         return "%s is following %s" % (self.from_user.username, 
