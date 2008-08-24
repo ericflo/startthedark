@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -21,12 +21,9 @@ def friend_list(request, username, friend_func=None):
     user = get_object_or_404(User, username=username)
     if friend_func is None:
         raise Http404
-    context = {
-        'friends': friend_func(user),
-    }
     return render_to_response(
         'socialgraph/friend_list.html',
-        context,
+        {'friends': friend_func(user)},
         context_instance = RequestContext(request)
     )
 
@@ -37,7 +34,7 @@ def follow(request, username):
     next = _get_next(request)
     if next and next != request.path:
         request.user.message_set.create(
-            message=_('You are now following %s' % user.username))
+            message=_('You are now following %s') % user.username)
         return HttpResponseRedirect(next)
     context = {
         'other_user': user,
@@ -61,7 +58,7 @@ def unfollow(request, username):
     next = _get_next(request)
     if next and next != request.path:
         request.user.message_set.create(
-            message=_('You are no longer following %s' % user.username))
+            message=_('You are no longer following %s') % user.username)
         return HttpResponseRedirect(next)
     context = {
         'other_user': user,

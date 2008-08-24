@@ -14,6 +14,17 @@
                 </ul>
             {% endif %}
         {% endblock %}
+        <ul class="nav">
+            <li><a href="{% url ev_tonight %}">Tonight</a></li>
+            <li><a href="{% url ev_archive %}">Archive</a></li>
+            <li><a href="{% url ev_everyone_tonight %}">Everyone Tonight</a></li>
+            <li><a href="{% url ev_everyone_archive %}">Everyone Archive</a></li>
+            
+        </ul>
         {% block main_content %}{% endblock %}
+        <script src="http://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            google.load("jquery", "1");
+        </script>
     </body>
 </html>

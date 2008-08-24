@@ -1,7 +1,28 @@
 {% extends "base.html" %}
+{% load events_tags %}
 
 {% block main_content %}
-    {% for event in events %}
-        <p>{{ event }}</p>
+    {{ event_form.description.errors }}
+    <form method="POST" action="{% url ev_create %}">
+        {{ event_form.description }}
+        <input type="submit" value="Create Event" />
+    </form>
+    {% if my_event %}
+        <h2>My Event</h2>
+        {% event my_event %}
+    {% endif %}
+    <h2>All Events</h2>
+    {% regroup events by start_date.hour as events_by_hour %}
+    {% for hour in events_by_hour %}
+        {% with hour.list.0.start_date as start %}
+        {% if start %}
+            <p>{{ start|time:_("gA") }}</p>
+        {% else %}
+            <p>Other</p>
+        {% endif %}
+        {% endwith %}
+        {% for event in hour.list %}
+            {% event event %}
+        {% endfor %}
     {% endfor %}
 {% endblock %}

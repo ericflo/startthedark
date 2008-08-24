@@ -93,6 +93,7 @@ INSTALLED_APPS = (
     'startthedark.events',
     'startthedark.socialgraph',
     'pagination',
+    'gravatar',
 )
 
 try:

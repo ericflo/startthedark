@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load pagination_tags %}
 {% load humanize %}
+{% load events_tags %}
 
 {% block main_content %}
     {% autopaginate events %}
@@ -8,7 +9,7 @@
     {% for date in events_by_start_date %}
         <p>{{ date.grouper|naturalday:_("MONTH_DAY_FORMAT")|capfirst }}</p>
         {% for event in date.list %}
-            <p>{{ event }}</p>
+            {% event event %}
         {% endfor %}
     {% endfor %}
     {% paginate %}

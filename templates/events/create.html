@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <form method="POST" action="">
+        <ul>
+            {{ form.as_ul }}
+        </ul>
+        <input type="submit" value="Create Event" />
+    </form>
+{% endblock %}
