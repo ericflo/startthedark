@@ -1,18 +1,24 @@
 {% load gravatar %}
-{% gravatar event.creator 80 %}
-<p>{{ event }}</p>
-<p>{{ event.start_date }}</p>
-{% with event.attendees.count as ac %}
-<p>{{ ac }} Attendee{{ ac|pluralize }}</p>
-{% endwith %}
-{% if event.today %}
-    <form method="POST" action="{% url ev_toggle_attendance %}">
-        <input type="hidden" name="next" value="{{ request.path }}" />
-        <input type="hidden" name="event_id" value="{{ event.id }}" />
-        {% if attending %}
-            <input type="submit" value="No Longer Attending" />
-        {% else %}
-            <input type="submit" value="I Will Attend" />
-        {% endif %}
-    </form>
-{% endif %}
+<div class="event_container">
+    <div class="grid_9 event">
+        {% gravatar event.creator 60 %}
+        <span class="description">{{ event.description }}</span>
+    </div>
+    <div class="grid_1 person_count">
+        {% with event.attendees.count as ac %}
+        <span class="number">{{ ac }}</span> <span class="label">P{{ ac|pluralize:"erson,eople" }}</span>
+        {% endwith %}
+    </div>
+    {% if authenticated and event.today %}
+        <form method="POST" action="{% url ev_toggle_attendance %}">
+            <input type="hidden" name="next" value="{{ request.path }}" />
+            <input type="hidden" name="event_id" value="{{ event.id }}" />
+            {% if attending %}
+                <input type="submit" value="No Longer Attending" />
+            {% else %}
+                <input type="submit" value="I Will Attend" />
+            {% endif %}
+        </form>
+    {% endif %}
+    <div class="clear"></div>
+</div>

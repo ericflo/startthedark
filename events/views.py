@@ -11,17 +11,22 @@ from django.views.decorators.http import require_POST
 from django.core.urlresolvers import reverse
 
 def events(request, template_name='tonight.html', today=True, all_events=False):
-    events = Event.objects.filter(latest=True).exclude(creator=request.user)
-    my_events = Event.objects.filter(latest=True, creator=request.user)
-    if not all_events:
+    events = Event.objects.filter(latest=True)
+    if all_events:
+        my_events = []
+    else:
+        my_events = Event.objects.filter(latest=True, creator=request.user)
         following = request.user.following_set.all().values('to_user')
-        events = events.filter(creator__in=[i['to_user'] for i in following])
+        events = events.exclude(creator=request.user).filter(
+            creator__in=[i['to_user'] for i in following])
     if today:
         events = events.today().order_by('-creation_date')
-        my_events = my_events.today().order_by('-creation_date')
+        if not all_events:
+            my_events = my_events.today().order_by('-creation_date')
     else:
         events = events.order_by('-start_date')
-        my_events = my_events.order_by('-start_date')
+        if not all_events:
+            my_events = my_events.order_by('-start_date')
     context = {
         'events': events,
         'my_event': len(my_events) and my_events[0] or None,

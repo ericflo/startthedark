@@ -13,25 +13,47 @@ div.container_12 { margin-top: 12px; }
 }
 
 /* Navigation Bar */
-#nav { 
-    background: url('../img/list_gradient.png') no-repeat 50% 0;
-    padding: 6px 0px 6px 0px;
-}
-#nav li { list-style-type: none; }
+#nav_bg { background: url('../img/list_gradient.png') no-repeat 140px 0px; }
+#nav { padding: 6px 0px 6px 0px;}
+#nav li { list-style-type: none; margin: 0px 12px 0px 12px; }
 #nav a, #nav span { 
     color: #FFFFFF; 
     opacity: 0.6;
     -webkit-opacity: 0.6;
     -moz-opacity: 0.6;
     text-decoration: none; 
-    font-size: 24px;
+    font-size: 22px;
 }
 #nav > li { display: inline; }
 #nav > li > ul { display: none; }
-#nav > li > ul > li { background: url('../img/list_gradient.png') no-repeat 50% 0; }
 #nav > li:hover > ul { display: block; position: absolute; }
-#nav #subnav_everyone { left: 695px; top: 50px; }
+#nav #subnav_everyone { left: 775px; top: 50px; }
 #nav > li:hover > ul a:before { content: " > "; }
+
+/* Event */
+div.event_container {
+    margin-bottom: 5px;
+}
+div.event {
+    background-color: red;
+    height: 60px;
+}
+div.event span.description {
+    vertical-align: 140%;
+}
+div.person_count {
+    background-color: red;
+    text-align: center;
+    height: 60px;
+}
+div.person_count span.label {
+    position: relative;
+    bottom: 4px;
+}
+div.person_count span.number {
+    display: block;
+    font-size: 28px;
+}
 
 /* Footer */
 #footer { 

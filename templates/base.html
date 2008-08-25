@@ -19,25 +19,28 @@
                     </ul>
                 {% endif %}
             {% endblock %}
-            <div class="grid_4"><p id="logo"><a href="{% url index %}">StartTheDark</a></p></div>
-            <div class="grid_8">
-                <ul id="nav">
-                    <li><a href="{% url ev_tonight %}">Tonight</a></li>
-                    <li><a href="{% url ev_archive %}">Archive</a></li>
-                    <li><span>Everyone</span>
-                        <ul id="subnav_everyone">
-                            <li><a href="{% url ev_everyone_tonight %}">Tonight</a></li>
-                            <li><a href="{% url ev_everyone_archive %}">Archive</a></li>
-                        </ul>
-                    </li>
-                    {% if user.is_authenticated %}
-                        <li><a href="{% url auth_logout %}">Logout</a></li>
-                        <li><a href="{% url auth_password_change %}">Change Password</a></li>
-                    {% else %}
-                        <li><a href="{% url auth_login %}">Login</a></li>
-                        <li><a href="{% url registration_register %}">Register</a></li>
-                    {% endif %}
-                </ul>
+            <div id="nav_bg">
+                <div class="grid_4"><p id="logo"><a href="{% url index %}">StartTheDark</a></p></div>
+                <div class="grid_8">
+                    <ul id="nav">
+                        <li><a href="{% url ev_tonight %}">Tonight</a></li>
+                        <li><a href="{% url ev_archive %}">Archive</a></li>
+                        <li><span>Everyone</span>
+                            <ul id="subnav_everyone">
+                                <li><a href="{% url ev_everyone_tonight %}">Tonight</a></li>
+                                <li><a href="{% url ev_everyone_archive %}">Archive</a></li>
+                            </ul>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url auth_logout %}">Logout</a></li>
+                            <li><a href="{% url auth_password_change %}">Change Password</a></li>
+                        {% else %}
+                            <li><a href="{% url auth_login %}">Login</a></li>
+                            <li><a href="{% url registration_register %}">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="clear"></div>
             </div>
             <div class="grid_12">
                 {% block main_content %}{% endblock %}
