@@ -53,6 +53,8 @@ SECRET_KEY = 't0ccqu0hm=9fyfg-4+b$+7(y$doha69e%--ga4$tlzvtx_h5u7'
 
 ACCOUNT_ACTIVATION_DAYS = 14
 
+LOGIN_REDIRECT_URL = '/'
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
