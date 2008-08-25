@@ -19,7 +19,13 @@
             <li><a href="{% url ev_archive %}">Archive</a></li>
             <li><a href="{% url ev_everyone_tonight %}">Everyone Tonight</a></li>
             <li><a href="{% url ev_everyone_archive %}">Everyone Archive</a></li>
-            
+            {% if user.is_authenticated %}
+                <li><a href="{% url auth_logout %}">Logout</a></li>
+                <li><a href="{% url auth_password_change %}">Change Password</a></li>
+            {% else %}
+                <li><a href="{% url auth_login %}">Login</a></li>
+                <li><a href="{% url registration_register %}">Register</a></li>
+            {% endif %}
         </ul>
         {% block main_content %}{% endblock %}
         <script src="http://www.google.com/jsapi"></script>

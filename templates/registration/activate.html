@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Activation Success! - {{ block.super }}{% endblock %}
+
+{% block main_content %}
+    {% if account %}
+        <p class="success">You have successfully activated!  Thanks for becoming a member of the site.  Please use the links above to explore.</p>
+    {% else %}
+        <p class="failure">We could not activate your account.  Please make sure that you have clicked the correct link in your e-mail or typed in the correct address.  If you get this message repeatedly, <a href="mailto:floguy@gmail.com">contact us</a> so that we can set your account up correctly.</p>
+    {% endif %}
+{% endblock %}

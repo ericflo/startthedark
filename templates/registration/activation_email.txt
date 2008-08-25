@@ -1,0 +1,11 @@
+Welcome to StartTheDark.net!
+
+We hope that you will enjoy the site, but first you will need to activate your 
+account with us.  To do so, please navigate to the link below:
+    
+    http://startthedark.com/accounts/activate/{{ activation_key }}/
+    
+For your own records, your activation key is: {{ activation_key }}
+
+Thanks,
+The StartTheDark.com Team
