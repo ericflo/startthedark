@@ -2,35 +2,57 @@
 <html>
     <head>
         <title>{% block title %}StartTheDark{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" media="all" href="{{ MEDIA_URL }}css/reset.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="{{ MEDIA_URL }}css/text.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="{{ MEDIA_URL }}css/960.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="{{ MEDIA_URL }}css/screen.css" />
         {% block extra_head %}{% endblock %}
     </head>
     <body>
-        {% block messages %}
-            {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                    <li>{{ message }}</li>
-                    {% endfor %}
+        <div class="container_12">
+            {% block messages %}
+                {% if messages %}
+                    <ul class="messages grid_12">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endblock %}
+            <div class="grid_4"><p id="logo"><a href="{% url index %}">StartTheDark</a></p></div>
+            <div class="grid_8">
+                <ul id="nav">
+                    <li><a href="{% url ev_tonight %}">Tonight</a></li>
+                    <li><a href="{% url ev_archive %}">Archive</a></li>
+                    <li><span>Everyone</span>
+                        <ul id="subnav_everyone">
+                            <li><a href="{% url ev_everyone_tonight %}">Tonight</a></li>
+                            <li><a href="{% url ev_everyone_archive %}">Archive</a></li>
+                        </ul>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url auth_logout %}">Logout</a></li>
+                        <li><a href="{% url auth_password_change %}">Change Password</a></li>
+                    {% else %}
+                        <li><a href="{% url auth_login %}">Login</a></li>
+                        <li><a href="{% url registration_register %}">Register</a></li>
+                    {% endif %}
                 </ul>
-            {% endif %}
-        {% endblock %}
-        <ul class="nav">
-            <li><a href="{% url ev_tonight %}">Tonight</a></li>
-            <li><a href="{% url ev_archive %}">Archive</a></li>
-            <li><a href="{% url ev_everyone_tonight %}">Everyone Tonight</a></li>
-            <li><a href="{% url ev_everyone_archive %}">Everyone Archive</a></li>
-            {% if user.is_authenticated %}
-                <li><a href="{% url auth_logout %}">Logout</a></li>
-                <li><a href="{% url auth_password_change %}">Change Password</a></li>
-            {% else %}
-                <li><a href="{% url auth_login %}">Login</a></li>
-                <li><a href="{% url registration_register %}">Register</a></li>
-            {% endif %}
+            </div>
+            <div class="grid_12">
+                {% block main_content %}{% endblock %}
+            </div>
+        </div>
+        <ul id="footer">
+            <li><a href="">About Us</a></li>
+            <li><a href="">Contact</a></li>
+            <li><a href="">Help</a></li>
+            <li><span>&copy; 2008 StartTheDark</span></li>
         </ul>
-        {% block main_content %}{% endblock %}
         <script src="http://www.google.com/jsapi"></script>
         <script type="text/javascript">
             google.load("jquery", "1");
         </script>
+        {% block extra_body %}{% endblock %}
     </body>
 </html>
