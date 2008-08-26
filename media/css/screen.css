@@ -26,34 +26,48 @@ div.container_12 { margin-top: 12px; }
 }
 #nav > li { display: inline; }
 #nav > li > ul { display: none; }
-#nav > li:hover > ul { display: block; position: absolute; }
+/*#nav > li:hover > ul { display: block; position: absolute; }
 #nav #subnav_everyone { left: 775px; top: 50px; }
-#nav > li:hover > ul a:before { content: " > "; }
+#nav > li:hover > ul a:before { content: " > "; }*/
 
-/* Event */
-div.event_container {
-    margin-bottom: 5px;
-}
-div.event {
-    background-color: red;
+/* New Event */
+#event_description_field {
+    background: url('../img/starry_background.png') no-repeat 50% 0;
     height: 60px;
 }
-div.event span.description {
-    vertical-align: 140%;
+#event_description_field textarea {
+    border: 2px solid #191919;
+    padding: 0px 5px 0px 5px;
+    width: 690px;
+    height: 56px;
+    overflow: hidden;
+    background: transparent;
+    font-size: 26px;
+    line-height: 60px;
+    color: white;
 }
+
+#event_submit input {
+    width: 100%;
+    height: 60px;
+    font-size: 26px;
+    border: 2px solid #191919;
+    padding: 0px 5px 0px 5px;
+    background-color: black;
+    color: white;
+}
+
+/* Event */
+div.event_container { margin-bottom: 5px; }
+div.event { background-color: red; height: 60px; }
+div.event span.description { vertical-align: 140%; }
 div.person_count {
     background-color: red;
     text-align: center;
     height: 60px;
 }
-div.person_count span.label {
-    position: relative;
-    bottom: 4px;
-}
-div.person_count span.number {
-    display: block;
-    font-size: 28px;
-}
+div.person_count span.label { position: relative; bottom: 4px; }
+div.person_count span.number { display: block; font-size: 28px; }
 
 /* Footer */
 #footer { 

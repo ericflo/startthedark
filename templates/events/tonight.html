@@ -4,9 +4,14 @@
 {% block main_content %}
     {{ event_form.description.errors }}
     <form method="POST" action="{% url ev_create %}">
-        {{ event_form.description }}
-        <input type="submit" value="Create Event" />
+        <div id="event_description_field" class="grid_9 alpha">
+            {{ event_form.description }}
+        </div>
+        <div id="event_submit" class="grid_3 omega">
+            <input type="submit" value="Create Event" />
+        </div>
     </form>
+    <div class="clear"></div>
     {% if my_event %}
         <h2>My Event</h2>
         {% event my_event %}

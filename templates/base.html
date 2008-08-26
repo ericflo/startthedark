@@ -10,15 +10,6 @@
     </head>
     <body>
         <div class="container_12">
-            {% block messages %}
-                {% if messages %}
-                    <ul class="messages grid_12">
-                        {% for message in messages %}
-                        <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            {% endblock %}
             <div id="nav_bg">
                 <div class="grid_4"><p id="logo"><a href="{% url index %}">StartTheDark</a></p></div>
                 <div class="grid_8">
@@ -42,6 +33,15 @@
                 </div>
                 <div class="clear"></div>
             </div>
+            {% block messages %}
+                {% if messages %}
+                    <ul class="messages grid_12">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endblock %}
             <div class="grid_12">
                 {% block main_content %}{% endblock %}
             </div>
@@ -53,9 +53,8 @@
             <li><span>&copy; 2008 StartTheDark</span></li>
         </ul>
         <script src="http://www.google.com/jsapi"></script>
-        <script type="text/javascript">
-            google.load("jquery", "1");
-        </script>
+        <script type="text/javascript">google.load("jquery", "1");</script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/global.js"></script>
         {% block extra_body %}{% endblock %}
     </body>
 </html>
