@@ -55,8 +55,14 @@ def create(request):
         event.start_date = guessed_date
         event.save()
         if request.is_ajax():
-            return HttpResponse(serializers.serialize('json', [event]), 
-                mimetype='application/json')
+            try:
+                Attendance.objects.get(event=event, user=request.user)
+                attending = True
+            except Attendance.DoesNotExist:
+                attending = False
+            return render_to_response('events/event.html', {'event': event,
+                'request': request, 'attending': attending, 
+                'authenticated': True})
         else:
             request.user.message_set.create(
                 message=_('Your event was posted.'))
@@ -65,6 +71,8 @@ def create(request):
             else:
                 next = reverse('ev_tonight')
             return HttpResponseRedirect(next)
+    if request.is_ajax():
+        raise Http404
     return render_to_response(
         'events/create.html',
         {'form': form},

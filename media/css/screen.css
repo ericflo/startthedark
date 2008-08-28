@@ -26,9 +26,24 @@ div.container_12 { margin-top: 12px; }
 }
 #nav > li { display: inline; }
 #nav > li > ul { display: none; }
-/*#nav > li:hover > ul { display: block; position: absolute; }
-#nav #subnav_everyone { left: 775px; top: 50px; }
-#nav > li:hover > ul a:before { content: " > "; }*/
+
+/* Messages */
+ul.messages {
+}
+ul.messages li { 
+    display: block;
+    background: url('../img/message_bg.png');
+    height: 40px;
+    line-height: 40px;
+    list-style-type: none;
+    margin: 0px 0px 4px 0px;
+    padding: 0px 10px 0px 10px;
+}
+a.clear_button { 
+    float: right; 
+    color: #FFFF00;
+    text-decoration: none;
+}
 
 /* New Event */
 #event_description_field {
