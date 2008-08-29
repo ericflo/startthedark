@@ -1,0 +1,19 @@
+set(
+    fab_hosts = ['startthedark.com'],
+    fab_user = 'startthedark',
+)
+
+def unlink_nginx():
+    'Un-link nginx rules for startthedark.'
+    sudo('rm -f /etc/nginx/sites-enabled/startthedark.com')
+    sudo('/etc/init.d/nginx reload')
+
+def link_nginx():
+    'Link nginx rules for startthedark'
+    sudo('ln -s /etc/nginx/sites-available/startthedark.com /etc/nginx/sites-enabled/startthedark.com')
+    sudo('/etc/init.d/nginx reload')
+
+def deploy():
+    'Deploy startthedark.'
+    run('cd startthedark; git pull')
+    sudo('/etc/init.d/apache2 reload')
