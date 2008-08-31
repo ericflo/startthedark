@@ -2,25 +2,26 @@
 {% load events_tags %}
 
 {% block main_content %}
-    {{ event_form.description.errors }}
-    <form id="event_form" method="POST" action="{% url ev_create %}">
-        <div id="event_description_field" class="grid_9 alpha">
-            {{ event_form.description }}
+    {% if user.is_authenticated %}
+        {{ event_form.description.errors }}
+        <form id="event_form" method="POST" action="{% url ev_create %}">
+            <div id="event_description_field" class="grid_9 alpha">
+                {{ event_form.description }}
+            </div>
+            <div id="event_submit" class="grid_3 omega">
+                <input type="submit" value="Create Event" />
+            </div>
+        </form>
+        <div class="clear"></div>
+        <h2>My Event</h2>
+        <div id="my_event">
+            {% if my_event %}
+                {% event my_event %}
+            {% else %}
+                <p>No Event Submitted Yet</p>
+            {% endif %}
         </div>
-        <div id="event_submit" class="grid_3 omega">
-            <input type="submit" value="Create Event" />
-        </div>
-    </form>
-    <div class="clear"></div>
-    
-    <h2>My Event</h2>
-    <div id="my_event">
-        {% if my_event %}
-            {% event my_event %}
-        {% else %}
-            <p>No Event Submitted Yet</p>
-        {% endif %}
-    </div>
+    {% endif %}
     <h2>All Events</h2>
     {% regroup events by start_date.hour as events_by_hour %}
     {% for hour in events_by_hour %}

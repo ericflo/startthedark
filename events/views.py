@@ -12,13 +12,13 @@ from django.core.urlresolvers import reverse
 
 def events(request, template_name='tonight.html', today=True, all_events=False):
     events = Event.objects.filter(latest=True)
-    if all_events:
-        my_events = []
-    else:
+    if request.user.is_authenticated():
         my_events = Event.objects.filter(latest=True, creator=request.user)
         following = request.user.following_set.all().values('to_user')
         events = events.exclude(creator=request.user).filter(
             creator__in=[i['to_user'] for i in following])
+    else:
+        my_events = []
     if today:
         events = events.today().order_by('-creation_date')
         if not all_events:
@@ -62,7 +62,7 @@ def create(request):
                 attending = False
             return render_to_response('events/event.html', {'event': event,
                 'request': request, 'attending': attending, 
-                'authenticated': True})
+                'authenticated': True, 'event_num': 1})
         else:
             request.user.message_set.create(
                 message=_('Your event was posted.'))
