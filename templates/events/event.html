@@ -9,16 +9,20 @@
         <span class="number">{{ ac }}</span> <span class="label">P{{ ac|pluralize:"erson,eople" }}</span>
         {% endwith %}
     </div>
-    {% if authenticated and event.today %}
-        <form method="POST" action="{% url ev_toggle_attendance %}">
-            <input type="hidden" name="next" value="{{ request.path }}" />
-            <input type="hidden" name="event_id" value="{{ event.id }}" />
-            {% if attending %}
-                <input type="submit" value="No Longer Attending" />
-            {% else %}
-                <input type="submit" value="I Will Attend" />
-            {% endif %}
-        </form>
+    {% if event.today %}
+        {% if authenticated %}
+            <form method="POST" action="{% url ev_toggle_attendance %}">
+                <input type="hidden" name="next" value="{{ request.path }}" />
+                <input type="hidden" name="event_id" value="{{ event.id }}" />
+                {% if attending %}
+                    <input type="submit" value="No Longer Attending" />
+                {% else %}
+                    <input type="submit" value="I Will Attend" />
+                {% endif %}
+            </form>
+        {% else %}
+            <p><a href="{% url auth_login %}">Login</a> to Attend</p>
+        {% endif %}
     {% endif %}
     <div class="clear"></div>
 </div>

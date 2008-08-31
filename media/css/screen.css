@@ -1,6 +1,6 @@
 /* General Stuff */
 body { background: #000000 url('../img/background.jpg') no-repeat 50% 0; color: white; }
-div.container_12 { margin-top: 12px; }
+/*div.container_12 { margin-top: 12px; }*/
 
 /* Logo */
 #logo a { 
@@ -86,13 +86,10 @@ div.person_count span.number { display: block; font-size: 28px; }
 
 /* Footer */
 #footer { 
-    position: absolute; 
-    bottom: 0px; 
     width: 100%; 
     background: url('../img/list_gradient.png') no-repeat 50% 0; 
     text-align: center;
     font-size: 18px;
-    margin-bottom: 0px;
     padding: 8px 0px 8px 0px;
 }
 #footer li { display: inline; }
@@ -103,3 +100,9 @@ div.person_count span.number { display: block; font-size: 28px; }
     -moz-opacity: 0.6;
     text-decoration: none;
 }
+html { height: 100%; }
+body { height: 100%; }
+.container_12 { position: relative; min-height: 100%; }
+* html .container_12 { height: 100%; }
+#content { padding-bottom: 7em; }
+#footer { position: relative; margin-top: -3em; }

@@ -33,7 +33,7 @@
         {% endif %}
         {% endwith %}
         {% for event in hour.list %}
-            {% event event %}
+            {% event event forloop.counter %}
         {% endfor %}
     {% endfor %}
 {% endblock %}

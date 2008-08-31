@@ -1,10 +1,11 @@
 from django import template
 from events.models import Attendance
 
-def event(context, e):
+def event(context, e, event_num=1):
     to_return = {
         'event': e,
         'request': context['request'],
+        'event_num': event_num,
     }
     if context['user'].is_authenticated():
         try:

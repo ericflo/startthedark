@@ -9,7 +9,7 @@
     {% for date in events_by_start_date %}
         <p>{{ date.grouper|naturalday:_("MONTH_DAY_FORMAT")|capfirst }}</p>
         {% for event in date.list %}
-            {% event event %}
+            {% event event forloop.counter %}
         {% endfor %}
     {% endfor %}
     {% paginate %}
