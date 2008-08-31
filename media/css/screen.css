@@ -1,6 +1,5 @@
 /* General Stuff */
 body { background: #000000 url('../img/background.jpg') no-repeat 50% 0; color: white; }
-/*div.container_12 { margin-top: 12px; }*/
 
 /* Logo */
 #logo a { 
@@ -13,7 +12,10 @@ body { background: #000000 url('../img/background.jpg') no-repeat 50% 0; color: 
 }
 
 /* Navigation Bar */
-#nav_bg { background: url('../img/list_gradient.png') no-repeat 140px 0px; }
+#nav_bg { 
+    background: url('../img/list_gradient.png') no-repeat 140px 12px;
+    padding-top: 12px;
+}
 #nav { padding: 6px 0px 6px 0px;}
 #nav li { list-style-type: none; margin: 0px 12px 0px 12px; }
 #nav a, #nav span { 
@@ -28,8 +30,6 @@ body { background: #000000 url('../img/background.jpg') no-repeat 50% 0; color: 
 #nav > li > ul { display: none; }
 
 /* Messages */
-ul.messages {
-}
 ul.messages li { 
     display: block;
     background: url('../img/message_bg.png');
@@ -84,6 +84,12 @@ div.person_count {
 div.person_count span.label { position: relative; bottom: 4px; }
 div.person_count span.number { display: block; font-size: 28px; }
 
+/* Event List */
+p.event_time { margin-bottom: 0px; margin-top: 10px; }
+p.event_time_first { margin-bottom: 0px; }
+#my_event_title { margin-top: 20px; }
+#all_events_title { margin-top: 20px;}
+
 /* Footer */
 #footer { 
     width: 100%; 
@@ -105,4 +111,4 @@ body { height: 100%; }
 .container_12 { position: relative; min-height: 100%; }
 * html .container_12 { height: 100%; }
 #content { padding-bottom: 7em; }
-#footer { position: relative; margin-top: -3em; }
+#footer { position: relative; margin-top: -3.5em; }

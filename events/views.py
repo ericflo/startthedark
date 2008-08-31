@@ -15,8 +15,9 @@ def events(request, template_name='tonight.html', today=True, all_events=False):
     if request.user.is_authenticated():
         my_events = Event.objects.filter(latest=True, creator=request.user)
         following = request.user.following_set.all().values('to_user')
-        events = events.exclude(creator=request.user).filter(
-            creator__in=[i['to_user'] for i in following])
+        if not all_events:
+            events = events.exclude(creator=request.user).filter(
+                creator__in=[i['to_user'] for i in following])
     else:
         my_events = []
     if today:

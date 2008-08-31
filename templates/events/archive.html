@@ -5,12 +5,16 @@
 
 {% block main_content %}
     {% autopaginate events %}
-    {% regroup events by start_date.date as events_by_start_date %}
-    {% for date in events_by_start_date %}
-        <p>{{ date.grouper|naturalday:_("MONTH_DAY_FORMAT")|capfirst }}</p>
-        {% for event in date.list %}
-            {% event event forloop.counter %}
+    {% if events %}
+        {% regroup events by start_date.date as events_by_start_date %}
+        {% for date in events_by_start_date %}
+            <p class="event_time{% if forloop.first %}_first{% endif %}">{{ date.grouper|naturalday:_("MONTH_DAY_FORMAT")|capfirst }}</p>
+            {% for event in date.list %}
+                {% event event forloop.counter %}
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
-    {% paginate %}
+        {% paginate %}
+    {% else %}
+        <p>There are no events listed.</p>
+    {% endif %}
 {% endblock %}

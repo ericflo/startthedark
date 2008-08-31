@@ -13,7 +13,7 @@
             </div>
         </form>
         <div class="clear"></div>
-        <h2>My Event</h2>
+        <h2 id="my_event_title">My Event</h2>
         <div id="my_event">
             {% if my_event %}
                 {% event my_event %}
@@ -22,18 +22,22 @@
             {% endif %}
         </div>
     {% endif %}
-    <h2>All Events</h2>
-    {% regroup events by start_date.hour as events_by_hour %}
-    {% for hour in events_by_hour %}
-        {% with hour.list.0.start_date as start %}
-        {% if start %}
-            <p>{{ start|time:_("gA") }}</p>
-        {% else %}
-            <p>Other</p>
-        {% endif %}
-        {% endwith %}
-        {% for event in hour.list %}
-            {% event event forloop.counter %}
+    <h2 id="all_events_title">All Events</h2>
+    {% if events %}
+        {% regroup events by start_date.hour as events_by_hour %}
+        {% for hour in events_by_hour %}
+            {% with hour.list.0.start_date as start %}
+            {% if start %}
+                <p class="event_time{% if forloop.first %}_first{% endif %}">{{ start|time:_("gA") }}</p>
+            {% else %}
+                <p>Other</p>
+            {% endif %}
+            {% endwith %}
+            {% for event in hour.list %}
+                {% event event forloop.counter %}
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
+    {% else %}
+        <p>There are no events listed.</p>
+    {% endif %}
 {% endblock %}
