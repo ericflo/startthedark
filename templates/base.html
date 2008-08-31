@@ -37,7 +37,7 @@
                 {% if messages %}
                     <ul class="messages grid_12">
                         {% for message in messages %}
-                        <li>{{ message }}</li>
+                        <li><span>{{ message }}</span></li>
                         {% endfor %}
                     </ul>
                 {% endif %}
@@ -55,6 +55,7 @@
         </ul>
         <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.2.6.min.js"></script>
         <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.form.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.livequery.min.js"></script>
         <script type="text/javascript" src="{{ MEDIA_URL }}js/global.js"></script>
         {% block extra_body %}{% endblock %}
     </body>

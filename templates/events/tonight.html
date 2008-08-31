@@ -5,6 +5,7 @@
     {% if user.is_authenticated %}
         {{ event_form.description.errors }}
         <form id="event_form" method="POST" action="{% url ev_create %}">
+            <input type="hidden" name="next" value="{{ request.path }}" />
             <div id="event_description_field" class="grid_9 alpha">
                 {{ event_form.description }}
             </div>
@@ -33,11 +34,9 @@
                 <p>Other</p>
             {% endif %}
             {% endwith %}
-            {% with forloop.counter as outer_counter %}
-                {% for event in hour.list %}
-                    {% event event outer_counter %}
-                {% endfor %}
-            {% endwith %}
+            {% for event in hour.list %}
+                {% event event counter.get_int %}
+            {% endfor %}
         {% endfor %}
     {% else %}
         <p>There are no events listed.</p>

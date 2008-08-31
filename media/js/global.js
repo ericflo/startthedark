@@ -37,12 +37,18 @@ $(function() {
     $('#event_form').ajaxForm({
         clearForm: true,
         success: function(response_text, status_text) {
+            $('#event_description_field').css('height', '60px');
+            $('#event_description_field textarea').css('height', '56px');
             $('#my_event').fadeOut("fast", function() {
                 $('#my_event').html(response_text);
                 $('#my_event').fadeIn("fast");
             });
         }
     });
-    $('.attend').val('+')
-    $('.unattend').val('✓')
+    $('.attend').val('+').livequery(function() {
+        $(this).val('+');
+    });
+    $('.unattend').val('✓').livequery(function() {
+        $(this).val('✓');
+    });
 });

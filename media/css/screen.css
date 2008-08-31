@@ -39,8 +39,9 @@ ul.messages li {
     margin: 0px 0px 4px 0px;
     padding: 0px 10px 0px 10px;
 }
-a.clear_button { 
-    float: right; 
+ul.messages li span { float: left; }
+ul.messages li a.clear_button { 
+    float: right;
     color: #FFFF00;
     text-decoration: none;
 }
@@ -106,12 +107,101 @@ div.person_count span.number {
 }
 .event_num_1 .event, .event_num_1 .person_count,
 .event_num_1 .attend, .event_num_1 .unattend {
-    background-color: red;
+    background: url('../img/bg_1.png');
+}
+.event_num_2 .event, .event_num_2 .person_count,
+.event_num_2 .attend, .event_num_2 .unattend {
+    background: url('../img/bg_2.png');
+}
+.event_num_3 .event, .event_num_3 .person_count,
+.event_num_3 .attend, .event_num_3 .unattend {
+    background: url('../img/bg_3.png');
+}
+.event_num_4 .event, .event_num_4 .person_count,
+.event_num_4 .attend, .event_num_4 .unattend {
+    background: url('../img/bg_4.png');
+}
+.event_num_5 .event, .event_num_5 .person_count,
+.event_num_5 .attend, .event_num_5 .unattend {
+    background: url('../img/bg_5.png');
+}
+.event_num_6 .event, .event_num_6 .person_count,
+.event_num_6 .attend, .event_num_6 .unattend {
+    background: url('../img/bg_6.png');
+}
+.event_num_7 .event, .event_num_7 .person_count,
+.event_num_7 .attend, .event_num_7 .unattend {
+    background: url('../img/bg_7.png');
+}
+.event_num_8 .event, .event_num_8 .person_count,
+.event_num_8 .attend, .event_num_8 .unattend {
+    background: url('../img/bg_8.png');
+}
+.event_num_9 .event, .event_num_9 .person_count,
+.event_num_9 .attend, .event_num_9 .unattend {
+    background: url('../img/bg_9.png');
+}
+.event_num_10 .event, .event_num_10 .person_count,
+.event_num_10 .attend, .event_num_10 .unattend {
+    background: url('../img/bg_10.png');
+}
+.event_num_11 .event, .event_num_11 .person_count,
+.event_num_11 .attend, .event_num_11 .unattend {
+    background: url('../img/bg_11.png');
+}
+.event_num_12 .event, .event_num_12 .person_count,
+.event_num_12 .attend, .event_num_12 .unattend {
+    background: url('../img/bg_12.png');
+}
+.event_num_13 .event, .event_num_13 .person_count,
+.event_num_13 .attend, .event_num_13 .unattend {
+    background: url('../img/bg_13.png');
+}
+.event_num_14 .event, .event_num_14 .person_count,
+.event_num_14 .attend, .event_num_14 .unattend {
+    background: url('../img/bg_14.png');
+}
+.event_num_15 .event, .event_num_15 .person_count,
+.event_num_15 .attend, .event_num_15 .unattend {
+    background: url('../img/bg_15.png');
+}
+.event_num_16 .event, .event_num_16 .person_count,
+.event_num_16 .attend, .event_num_16 .unattend {
+    background: url('../img/bg_16.png');
+}
+.event_num_17 .event, .event_num_17 .person_count,
+.event_num_17 .attend, .event_num_17 .unattend {
+    background: url('../img/bg_17.png');
+}
+.event_num_18 .event, .event_num_18 .person_count,
+.event_num_18 .attend, .event_num_18 .unattend {
+    background: url('../img/bg_18.png');
+}
+.event_num_19 .event, .event_num_19 .person_count,
+.event_num_19 .attend, .event_num_19 .unattend {
+    background: url('../img/bg_19.png');
+}
+.event_num_20 .event, .event_num_20 .person_count,
+.event_num_20 .attend, .event_num_20 .unattend {
+    background: url('../img/bg_20.png');
 }
 
 /* Event List */
-p.event_time { margin-bottom: 0px; margin-top: 10px; }
-p.event_time_first { margin-bottom: 0px; }
+p.event_time { 
+    margin-bottom: 0px; 
+    margin-top: 10px;
+    font-weight: bold;
+    opacity: 0.8;
+    -webkit-opacity: 0.8;
+    -moz-opacity: 0.8;
+}
+p.event_time_first { 
+    margin-bottom: 0px; 
+    font-weight: bold;
+    opacity: 0.8;
+    -webkit-opacity: 0.8;
+    -moz-opacity: 0.8;
+}
 #my_event_title { margin-top: 20px; }
 #all_events_title { margin-top: 20px;}
 
@@ -122,6 +212,7 @@ p.event_time_first { margin-bottom: 0px; }
     text-align: center;
     font-size: 18px;
     padding: 8px 0px 8px 0px;
+    float: left;
 }
 #footer li { display: inline; }
 #footer a, #footer span { 

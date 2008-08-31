@@ -1,6 +1,6 @@
 {% load gravatar %}
 <div class="event_container{% if event_num %} event_num_{{ event_num }}{% endif %}">
-    <div class="grid_9 alpha event">
+    <div class="grid_10 alpha event">
         {% gravatar event.creator 60 %}
         <span class="description">{{ event.description }}</span>
     </div>
@@ -10,10 +10,10 @@
         {% endwith %}
     </div>
     {% if event.today %}
-        <div class="grid_1">
+        <div class="grid_1 omega">
             {% if authenticated %}
                 <form method="POST" action="{% url ev_toggle_attendance %}">
-                    <input type="hidden" name="next" value="{{ request.path }}" />
+                    <input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}{{ request.path }}{% endif %}" />
                     <input type="hidden" name="event_id" value="{{ event.id }}" />
                     {% if attending %}
                         <input class="unattend" type="submit" value="No Longer Attending" />

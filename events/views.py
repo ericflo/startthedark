@@ -10,30 +10,35 @@ from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.views.decorators.http import require_POST
 from django.core.urlresolvers import reverse
 
+class Counter(object):
+    i = 1
+    
+    def get_int(self):
+        self.i += 1
+        return self.i - 1
+
 def events(request, template_name='tonight.html', today=True, all_events=False):
-    events = Event.objects.filter(latest=True)
+    events = Event.objects.filter(latest=True).order_by('-creation_date')
     if request.user.is_authenticated():
-        my_events = Event.objects.filter(latest=True, creator=request.user)
+        my_events = Event.objects.filter(latest=True, 
+            creator=request.user).order_by('-creation_date')
         following = request.user.following_set.all().values('to_user')
-        if not all_events:
+        if today or not all_events:
             events = events.exclude(creator=request.user).filter(
                 creator__in=[i['to_user'] for i in following])
     else:
         my_events = []
     if today:
-        events = events.today().order_by('-creation_date')
+        events = events.today().order_by('-start_date')
         if not all_events:
-            my_events = my_events.today().order_by('-creation_date')
-    else:
-        events = events.order_by('-start_date')
-        if not all_events:
-            my_events = my_events.order_by('-start_date')
+            my_events = my_events.today()
     context = {
         'events': events,
         'my_event': len(my_events) and my_events[0] or None,
         'event_form': EventForm(),
         'today': today,
         'all_events': all_events,
+        'counter': Counter(),
     }
     return render_to_response(
         'events/%s' % template_name,
@@ -55,6 +60,10 @@ def create(request):
                 continue
         event.start_date = guessed_date
         event.save()
+        if 'next' in request.POST:
+            next = request.POST['next']
+        else:
+            next = reverse('ev_tonight')
         if request.is_ajax():
             try:
                 Attendance.objects.get(event=event, user=request.user)
@@ -63,14 +72,10 @@ def create(request):
                 attending = False
             return render_to_response('events/event.html', {'event': event,
                 'request': request, 'attending': attending, 
-                'authenticated': True, 'event_num': 1})
+                'authenticated': True, 'event_num': 1, 'next': next})
         else:
             request.user.message_set.create(
                 message=_('Your event was posted.'))
-            if 'next' in request.POST:
-                next = request.POST['next']
-            else:
-                next = reverse('ev_tonight')
             return HttpResponseRedirect(next)
     if request.is_ajax():
         raise Http404
