@@ -33,9 +33,11 @@
                 <p>Other</p>
             {% endif %}
             {% endwith %}
-            {% for event in hour.list %}
-                {% event event forloop.counter %}
-            {% endfor %}
+            {% with forloop.counter as outer_counter %}
+                {% for event in hour.list %}
+                    {% event event outer_counter %}
+                {% endfor %}
+            {% endwith %}
         {% endfor %}
     {% else %}
         <p>There are no events listed.</p>

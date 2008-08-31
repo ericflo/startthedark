@@ -43,4 +43,6 @@ $(function() {
             });
         }
     });
+    $('.attend').val('+')
+    $('.unattend').val('✓')
 });

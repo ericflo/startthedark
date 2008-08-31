@@ -9,9 +9,11 @@
         {% regroup events by start_date.date as events_by_start_date %}
         {% for date in events_by_start_date %}
             <p class="event_time{% if forloop.first %}_first{% endif %}">{{ date.grouper|naturalday:_("MONTH_DAY_FORMAT")|capfirst }}</p>
-            {% for event in date.list %}
-                {% event event forloop.counter %}
-            {% endfor %}
+            {% with forloop.counter as outer_counter %}
+                {% for event in date.list %}
+                    {% event event outer_counter %}
+                {% endfor %}
+            {% endwith %}
         {% endfor %}
         {% paginate %}
     {% else %}

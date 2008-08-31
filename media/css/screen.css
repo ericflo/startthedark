@@ -74,15 +74,40 @@ a.clear_button {
 
 /* Event */
 div.event_container { margin-bottom: 5px; }
-div.event { background-color: red; height: 60px; }
+div.event { height: 60px; }
 div.event span.description { vertical-align: 140%; }
 div.person_count {
-    background-color: red;
     text-align: center;
     height: 60px;
 }
-div.person_count span.label { position: relative; bottom: 4px; }
-div.person_count span.number { display: block; font-size: 28px; }
+div.person_count span.label { position: relative; bottom: 6px; }
+div.person_count span.number { 
+    display: block; 
+    font-size: 24px; 
+    padding-top: 3px;
+}
+.attend { 
+    text-align: center;
+    height: 60px; 
+    border: none;
+    width: 100%;
+    font-size: 30px;
+    color: white;
+    line-height: 30px;
+}
+.unattend { 
+    text-align: center;
+    height: 60px; 
+    border: none;
+    width: 100%;
+    font-size: 30px;
+    color: #44FF44;
+    line-height: 30px;
+}
+.event_num_1 .event, .event_num_1 .person_count,
+.event_num_1 .attend, .event_num_1 .unattend {
+    background-color: red;
+}
 
 /* Event List */
 p.event_time { margin-bottom: 0px; margin-top: 10px; }
