@@ -1,0 +1,230 @@
+/* General Stuff */
+body { background: #000000 url('http://media.startthedark.com/img/background.jpg') no-repeat 50% 0; color: white; }
+
+/* Logo */
+#logo a { 
+    display: block;
+    position: absolute;
+    background: url('http://media.startthedark.com/img/logo.png') no-repeat; 
+    text-indent: -9000px;
+    height: 44px;
+    width: 244px;
+}
+
+/* Navigation Bar */
+#nav_bg { 
+    background: url('http://media.startthedark.com/img/list_gradient.png') no-repeat 140px 12px;
+    padding-top: 12px;
+}
+#nav { padding: 6px 0px 6px 0px;}
+#nav li { list-style-type: none; margin: 0px 12px 0px 12px; }
+#nav a, #nav span { 
+    color: #FFFFFF; 
+    opacity: 0.6;
+    -webkit-opacity: 0.6;
+    -moz-opacity: 0.6;
+    text-decoration: none; 
+    font-size: 22px;
+}
+#nav > li { display: inline; }
+#nav > li > ul { display: none; }
+
+/* Messages */
+ul.messages li { 
+    display: block;
+    background: url('http://media.startthedark.com/img/message_bg.png');
+    height: 40px;
+    line-height: 40px;
+    list-style-type: none;
+    margin: 0px 0px 4px 0px;
+    padding: 0px 10px 0px 10px;
+}
+ul.messages li span { float: left; }
+ul.messages li a.clear_button { 
+    float: right;
+    color: #FFFF00;
+    text-decoration: none;
+}
+
+/* New Event */
+#event_description_field {
+    background: url('http://media.startthedark.com/img/starry_background.png') no-repeat 50% 0;
+    height: 60px;
+}
+#event_description_field textarea {
+    border: 2px solid #191919;
+    padding: 0px 5px 0px 5px;
+    width: 690px;
+    height: 56px;
+    overflow: hidden;
+    background: transparent;
+    font-size: 26px;
+    line-height: 60px;
+    color: white;
+}
+
+#event_submit input {
+    width: 100%;
+    height: 60px;
+    font-size: 26px;
+    border: 2px solid #191919;
+    padding: 0px 5px 0px 5px;
+    background-color: black;
+    color: white;
+}
+
+/* Event */
+div.event_container { margin-bottom: 5px; }
+div.event { height: 60px; }
+div.event span.description { vertical-align: 140%; }
+div.person_count {
+    text-align: center;
+    height: 60px;
+}
+div.person_count span.label { position: relative; bottom: 6px; }
+div.person_count span.number { 
+    display: block; 
+    font-size: 24px; 
+    padding-top: 3px;
+}
+.attend { 
+    text-align: center;
+    height: 60px; 
+    border: none;
+    width: 100%;
+    font-size: 30px;
+    color: white;
+    line-height: 30px;
+}
+.unattend { 
+    text-align: center;
+    height: 60px; 
+    border: none;
+    width: 100%;
+    font-size: 30px;
+    color: #44FF44;
+    line-height: 30px;
+}
+.event_num_1 .event, .event_num_1 .person_count,
+.event_num_1 .attend, .event_num_1 .unattend {
+    background: url('http://media.startthedark.com/img/bg_1.png');
+}
+.event_num_2 .event, .event_num_2 .person_count,
+.event_num_2 .attend, .event_num_2 .unattend {
+    background: url('http://media.startthedark.com/img/bg_2.png');
+}
+.event_num_3 .event, .event_num_3 .person_count,
+.event_num_3 .attend, .event_num_3 .unattend {
+    background: url('http://media.startthedark.com/img/bg_3.png');
+}
+.event_num_4 .event, .event_num_4 .person_count,
+.event_num_4 .attend, .event_num_4 .unattend {
+    background: url('http://media.startthedark.com/img/bg_4.png');
+}
+.event_num_5 .event, .event_num_5 .person_count,
+.event_num_5 .attend, .event_num_5 .unattend {
+    background: url('http://media.startthedark.com/img/bg_5.png');
+}
+.event_num_6 .event, .event_num_6 .person_count,
+.event_num_6 .attend, .event_num_6 .unattend {
+    background: url('http://media.startthedark.com/img/bg_6.png');
+}
+.event_num_7 .event, .event_num_7 .person_count,
+.event_num_7 .attend, .event_num_7 .unattend {
+    background: url('http://media.startthedark.com/img/bg_7.png');
+}
+.event_num_8 .event, .event_num_8 .person_count,
+.event_num_8 .attend, .event_num_8 .unattend {
+    background: url('http://media.startthedark.com/img/bg_8.png');
+}
+.event_num_9 .event, .event_num_9 .person_count,
+.event_num_9 .attend, .event_num_9 .unattend {
+    background: url('http://media.startthedark.com/img/bg_9.png');
+}
+.event_num_10 .event, .event_num_10 .person_count,
+.event_num_10 .attend, .event_num_10 .unattend {
+    background: url('http://media.startthedark.com/img/bg_10.png');
+}
+.event_num_11 .event, .event_num_11 .person_count,
+.event_num_11 .attend, .event_num_11 .unattend {
+    background: url('http://media.startthedark.com/img/bg_11.png');
+}
+.event_num_12 .event, .event_num_12 .person_count,
+.event_num_12 .attend, .event_num_12 .unattend {
+    background: url('http://media.startthedark.com/img/bg_12.png');
+}
+.event_num_13 .event, .event_num_13 .person_count,
+.event_num_13 .attend, .event_num_13 .unattend {
+    background: url('http://media.startthedark.com/img/bg_13.png');
+}
+.event_num_14 .event, .event_num_14 .person_count,
+.event_num_14 .attend, .event_num_14 .unattend {
+    background: url('http://media.startthedark.com/img/bg_14.png');
+}
+.event_num_15 .event, .event_num_15 .person_count,
+.event_num_15 .attend, .event_num_15 .unattend {
+    background: url('http://media.startthedark.com/img/bg_15.png');
+}
+.event_num_16 .event, .event_num_16 .person_count,
+.event_num_16 .attend, .event_num_16 .unattend {
+    background: url('http://media.startthedark.com/img/bg_16.png');
+}
+.event_num_17 .event, .event_num_17 .person_count,
+.event_num_17 .attend, .event_num_17 .unattend {
+    background: url('http://media.startthedark.com/img/bg_17.png');
+}
+.event_num_18 .event, .event_num_18 .person_count,
+.event_num_18 .attend, .event_num_18 .unattend {
+    background: url('http://media.startthedark.com/img/bg_18.png');
+}
+.event_num_19 .event, .event_num_19 .person_count,
+.event_num_19 .attend, .event_num_19 .unattend {
+    background: url('http://media.startthedark.com/img/bg_19.png');
+}
+.event_num_20 .event, .event_num_20 .person_count,
+.event_num_20 .attend, .event_num_20 .unattend {
+    background: url('http://media.startthedark.com/img/bg_20.png');
+}
+
+/* Event List */
+p.event_time { 
+    margin-bottom: 0px; 
+    margin-top: 10px;
+    font-weight: bold;
+    opacity: 0.8;
+    -webkit-opacity: 0.8;
+    -moz-opacity: 0.8;
+}
+p.event_time_first { 
+    margin-bottom: 0px; 
+    font-weight: bold;
+    opacity: 0.8;
+    -webkit-opacity: 0.8;
+    -moz-opacity: 0.8;
+}
+#my_event_title { margin-top: 20px; }
+#all_events_title { margin-top: 20px;}
+
+/* Footer */
+#footer { 
+    width: 100%; 
+    background: url('http://media.startthedark.com/img/list_gradient.png') no-repeat 50% 0; 
+    text-align: center;
+    font-size: 18px;
+    padding: 8px 0px 8px 0px;
+    float: left;
+}
+#footer li { display: inline; }
+#footer a, #footer span { 
+    color: #FFFFFF;
+    opacity: 0.6;
+    -webkit-opacity: 0.6;
+    -moz-opacity: 0.6;
+    text-decoration: none;
+}
+html { height: 100%; }
+body { height: 100%; }
+.container_12 { position: relative; min-height: 100%; }
+* html .container_12 { height: 100%; }
+#content { padding-bottom: 7em; }
+#footer { position: relative; margin-top: -3.5em; }

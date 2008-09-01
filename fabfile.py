@@ -15,5 +15,8 @@ def link_nginx():
 
 def deploy():
     'Deploy startthedark.'
+    local('bash make_prod_css.sh')
+    local('git commit -a -m "Rebuilt Prod CSS For Commit')
+    local('git push')
     run('cd startthedark; git pull')
     sudo('/etc/init.d/apache2 reload')
