@@ -15,6 +15,8 @@
         </form>
         <div class="clear"></div>
         <h2 id="my_event_title">My Event</h2>
+        <p id="going_question">going?</p>
+        <div class="clear"></div>
         <div id="my_event">
             {% if my_event %}
                 {% event my_event %}
@@ -25,6 +27,7 @@
     {% endif %}
     <h2 id="all_events_title">All Events</h2>
     {% if events %}
+        {% if not user.is_authenticated %}<p id="going_question">going?</p>{% endif %}
         {% regroup events by start_date.hour as events_by_hour %}
         {% for hour in events_by_hour %}
             {% with hour.list.0.start_date as start %}

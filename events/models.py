@@ -29,7 +29,9 @@ class Event(models.Model):
     objects = EventManager()
     
     def __unicode__(self):
-        return self.description[:140]
+        if len(self.description) > 80:
+            return self.description[:76] + ' ...'
+        return self.description[:80]
     
     def save(self):
         Event.objects.today().filter(creator=self.creator).update(latest=False)
@@ -41,6 +43,14 @@ class Event(models.Model):
             day=now.day)
         end = (start + timedelta(days=1)) - timedelta.resolution
         return self.creation_date >= start and self.creation_date <= end
+    
+    def description_size(self):
+        if len(self.description) < 120:
+            return 'small'
+        elif len(self.description) < 240:
+            return 'medium'
+        else:
+            return 'large'
 
 class Attendance(models.Model):
     user = models.ForeignKey(User)

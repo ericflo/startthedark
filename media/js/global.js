@@ -1,4 +1,12 @@
 $(function() {
+    var add_notification = function(message) {
+        if($('.messages').length > 0) {
+            $('.messages').append('<li><span>' + message + '</span></li>');
+        }
+        else {
+            $('#content').before('<ul class="messages grid_12"><li><span>' + message + '</span></li></ul>');
+        }
+    };
     $('#event_description_field textarea').keydown(function(event) {
         if(event.keyCode == 13) {
             $('#event_form').submit();
@@ -15,13 +23,19 @@ $(function() {
             }
         }
     });
+    $('#nav > li a, #footer li a').mouseover(function() {
+        $(this).fadeTo('fast', 1.0);
+    }).mouseout(function() {
+        $(this).fadeTo('fast', 0.6);
+    });
     $('#nav > li > span').mouseover(function() {
         var pos = $('#nav > li > span').position();
         $('#nav > li > ul')
             .css('position', 'absolute')
-            .css('top', pos['top'] + 30 + 'px')
-            .css('left', pos['left'] + 'px')
-            .css('display', 'block');
+            .css('top', pos['top'] + 35 + 'px')
+            .css('left', pos['left'] - 22 + 'px')
+            .css('display', 'block')
+            .css('z-index', '999');
     });
     $('#nav > li > ul').bind("mouseleave", function() {
         $('#nav > li > ul').css('display', 'none');
@@ -29,13 +43,27 @@ $(function() {
     $(document).click(function() {
         $('#nav > li > ul').css('display', 'none');
     });
-    $('ul.messages li').append('<a class="clear_button" href="#">Clear</a>');
-    $('a.clear_button').click(function() {
-        $(this).parent().fadeOut("fast");
-        return false;
+    $('ul.messages li').livequery(function() {
+        $(this).append('<a class="clear_button" href="#">Clear</a>');
+    });
+    $('a.clear_button').livequery(function() {
+        $(this).click(function() {
+            $(this).parent().fadeOut("fast");
+            return false;
+        });
     });
     $('#event_form').ajaxForm({
         clearForm: true,
+        beforeSubmit: function(formData, jqForm, options) {
+            var field_length = $('#id_description').fieldValue()[0].length;
+            if(field_length > 340) {
+                add_notification('Content too long.  Please shorten by ' + 
+                    (field_length - 340) + ' character' + 
+                    ((field_length - 340) == 1 ? '' : 's') + '.');
+                return false;
+            }
+            return true;
+        },
         success: function(response_text, status_text) {
             $('#event_description_field').css('height', '60px');
             $('#event_description_field textarea').css('height', '56px');

@@ -1,8 +1,8 @@
 {% load gravatar %}
 <div class="event_container{% if event_num %} event_num_{{ event_num }}{% endif %}">
     <div class="grid_10 alpha event">
-        {% gravatar event.creator 60 %}
-        <span class="description">{{ event.description }}</span>
+        {% gravatar event.creator 58 %}
+        <span class="description_{{ event.description_size }}">{{ event.description }}</span>
     </div>
     <div class="grid_1 person_count">
         {% with event.attendees.count as ac %}
@@ -22,7 +22,7 @@
                     {% endif %}
                 </form>
             {% else %}
-                <p><a href="{% url auth_login %}">Login</a> to Attend</p>
+                <p class="login_to_attend"><span><a href="{% url auth_login %}">Login</a> to Attend</span></p>
             {% endif %}
         </div>
     {% endif %}
