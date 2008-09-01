@@ -52,6 +52,15 @@ $(function() {
             return false;
         });
     });
+    $('div.event .username').livequery(function() {
+        $(this).mouseover(function() {
+            $(this).animate({'fontSize': '12px'}, "fast");
+            $(this).fadeTo('fast', 1.0);
+        }).mouseout(function() {
+            $(this).animate({'fontSize': '11px'}, "fast");
+            $(this).fadeTo('fast', 0.7);
+        });
+    });
     $('#event_form').ajaxForm({
         clearForm: true,
         beforeSubmit: function(formData, jqForm, options) {
@@ -84,7 +93,7 @@ $(function() {
                 else {
                     form.children('.attendance').replaceWith('<input class="attendance attend" type="submit" value="+" />');
                 }
-                form.parent().siblings('.person_count').html('<span class="number">' + data.count + '</span> <span class="label">' + (data.count == 1 ? 'Person' : 'People') + '</span>');
+                form.parent().siblings('.person_count').children('a').html('<span class="number">' + data.count + '</span> <span class="label">' + (data.count == 1 ? 'Person' : 'People') + '</span>');
             }
         });
     });

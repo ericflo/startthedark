@@ -15,8 +15,8 @@ def events(request, template_name='tonight.html', today=True, all_events=False):
     if request.user.is_authenticated():
         my_events = Event.objects.filter(latest=True, 
             creator=request.user).order_by('-creation_date')
-        following = request.user.following_set.all().values('to_user')
-        if today or not all_events:
+        if not all_events:
+            following = request.user.following_set.all().values('to_user')
             events = events.exclude(creator=request.user).filter(
                 creator__in=[i['to_user'] for i in following])
     else:
@@ -35,6 +35,14 @@ def events(request, template_name='tonight.html', today=True, all_events=False):
     return render_to_response(
         'events/%s' % template_name,
         context,
+        context_instance = RequestContext(request)
+    )
+
+def event(request, id):
+    event = get_object_or_404(Event, id=id)
+    return render_to_response(
+        'events/event_details.html',
+        {'event': event},
         context_instance = RequestContext(request)
     )
 

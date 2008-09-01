@@ -1,13 +1,17 @@
 {% load gravatar %}
+{% load events_tags %}
 <div class="event_container{% if event_num %} event_num_{{ event_num }}{% endif %}">
     <div class="grid_10 alpha event">
         {% gravatar event.creator 58 %}
+        <a class="username" href="">{{ event.creator.username|truncate:"12" }}</a>
         <span class="description_{{ event.description_size }}">{{ event.description }}</span>
     </div>
     <div class="grid_1 person_count">
-        {% with event.attendees.count as ac %}
-        <span class="number">{{ ac }}</span> <span class="label">P{{ ac|pluralize:"erson,eople" }}</span>
-        {% endwith %}
+        <a href="{% url ev_event event.id %}">
+            {% with event.attendees.count as ac %}
+            <span class="number">{{ ac }}</span> <span class="label">P{{ ac|pluralize:"erson,eople" }}</span>
+            {% endwith %}
+        </a>
     </div>
     {% if event.today %}
         <div class="grid_1 omega">

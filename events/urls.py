@@ -27,6 +27,7 @@ urlpatterns = patterns('',
         {'today': False, 'all_events': True, 'template_name': 'archive.html'},
         name='ev_everyone_archive'
     ),
+    url(r'^event/(?P<id>\d+)/$', views.event, name="ev_event"),
     url(r'^create/$', views.create, name='ev_create'),
     url(
         r'^toggle-attendance/$', 
