@@ -205,6 +205,37 @@ p.event_time_first {
 #my_event_title { margin-top: 20px; }
 #all_events_title { margin-top: 20px;}
 
+/* Pagination */
+.pagination { 
+    font-weight: bold; 
+    padding-top: 3px; 
+    padding-bottom: 3px; 
+    margin-top: 3px; 
+    margin-bottom: 1em;
+}
+.pagination a { 
+    padding: 2px 5px 2px 5px; 
+    border: 1px solid #FFFFFF; 
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.pagination a:hover, .pagination a:active { 
+    background-color: #FF3344; 
+    border: 1px solid #FF3344;
+}
+.pagination .current { 
+    padding: 2px 5px 2px 5px; 
+    border: 1px solid #FF3344; 
+    font-weight: bold; 
+    background-color: #FF3344; 
+    color: #FFFFFF;
+}
+.pagination .disabled { 
+    padding: 2px 5px 2px 5px; 
+    border: 1px solid #999999; 
+    color: #999999; 
+}
+
 /* Footer */
 #footer { 
     width: 100%; 
