@@ -12,13 +12,13 @@
     {% if event.today %}
         <div class="grid_1 omega">
             {% if authenticated %}
-                <form method="POST" action="{% url ev_toggle_attendance %}">
+                <form method="POST" id="toggle_attendance_form_{{ event_num }}" class="toggle_attendance_form" action="{% url ev_toggle_attendance %}">
                     <input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}{{ request.path }}{% endif %}" />
                     <input type="hidden" name="event_id" value="{{ event.id }}" />
                     {% if attending %}
-                        <input class="unattend" type="submit" value="No Longer Attending" />
+                        <input class="attendance unattend" type="submit" value="No Longer Attending" />
                     {% else %}
-                        <input class="attend" type="submit" value="I Will Attend" />
+                        <input class="attendance attend" type="submit" value="I Will Attend" />
                     {% endif %}
                 </form>
             {% else %}

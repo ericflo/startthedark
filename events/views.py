@@ -89,8 +89,9 @@ def toggle_attendance(request):
     if not created:
         attendance.delete()
     if request.is_ajax():
-        return HttpResponse('{"created": %s}' % created and 'true' or 'false', 
-            mimetype='application/json')
+        json = '{"created": %s, "count": %s}' % (created and 'true' or 'false', 
+            event.attendees.all().count())
+        return HttpResponse(json, mimetype='application/json')
     if created:
         request.user.message_set.create(
             message=_('You are now attending "%s"') % unicode(event))

@@ -73,6 +73,21 @@ $(function() {
             });
         }
     });
+    $('.toggle_attendance_form').each(function (i) {
+        var form = $($('.toggle_attendance_form').get(i));
+        form.ajaxForm({
+            dataType: 'json',
+            success: function(data) {
+                if(data.created == true) {
+                    form.children('.attendance').replaceWith('<input class="attendance unattend" type="submit" value="✓" />');
+                }
+                else {
+                    form.children('.attendance').replaceWith('<input class="attendance attend" type="submit" value="+" />');
+                }
+                form.parent().siblings('.person_count').html('<span class="number">' + data.count + '</span> <span class="label">' + (data.count == 1 ? 'Person' : 'People') + '</span>');
+            }
+        });
+    });
     $('.attend').val('+').livequery(function() {
         $(this).val('+');
     });
