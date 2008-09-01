@@ -51,6 +51,16 @@ ul.messages li a.clear_button {
     text-decoration: none;
 }
 
+/* What is going on tonight? */
+#what_tonight {
+    width: 385px;
+    height: 41px;
+    background: url('../img/what_tonight.png');
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    text-indent: -9000px;
+}
+
 /* New Event */
 #event_description_field {
     background: url('../img/starry_background.png') no-repeat 50% 0;

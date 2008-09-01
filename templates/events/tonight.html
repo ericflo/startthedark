@@ -2,6 +2,7 @@
 {% load events_tags %}
 
 {% block main_content %}
+    <p id="what_tonight">What is going on tonight?</p>
     {% if user.is_authenticated %}
         {{ event_form.description.errors }}
         <form id="event_form" method="POST" action="{% url ev_create %}">
