@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load events_tags %}
+{% load profile_tags %}
 
 {% block main_content %}
     <h2 id="event_title">Event</h2>
@@ -8,6 +9,6 @@
     {% event event 1 %}
     <h2 id="attendees_title">Attendees</h2>
     {% for person in event.attendees.all %}
-        {{ person }}
+        {% person person %}
     {% endfor %}
 {% endblock %}

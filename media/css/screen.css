@@ -88,16 +88,14 @@ ul.messages li a.clear_button {
     color: white;
 }
 
-/* Event */
-div.event_container { margin-bottom: 5px; }
-div.event { height: 60px; }
-div.event img { margin: 1px 10px 0px 0px; float: left; }
-div.event .username { 
-    float: left; 
-    position: relative;
-    display: block; 
-    right: 68px; 
-    top: 48px; 
+/* Person */
+div.person { margin: 1px 20px 10px 0px; float: left; }
+div.person a { text-decoration: none; }
+div.person .username { 
+    float: left;
+    position: absolute;
+    margin-top: 47px;
+    z-index: 1;
     width: 58px;
     font-weight: bolder;
     font-size: 11px;
@@ -110,6 +108,10 @@ div.event .username {
     -webkit-opacity: 0.7;
     -moz-opacity: 0.7;
 }
+
+/* Event */
+div.event_container { margin-bottom: 5px; }
+div.event { height: 60px; }
 div.event span.description_small { 
     display: block;
     padding: 20px 10px 0px 0px;

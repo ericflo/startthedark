@@ -52,13 +52,21 @@ $(function() {
             return false;
         });
     });
-    $('div.event .username').livequery(function() {
+    $('div.person').livequery(function() {
         $(this).mouseover(function() {
-            $(this).animate({'fontSize': '12px'}, "fast");
-            $(this).fadeTo('fast', 1.0);
+            $(this).animate({'marginRight': '16px', 'marginBottom': '0px'}, "fast")
+            .find('img')
+            .animate({'width': '65px', 'height': '65px', 'marginTop': '-3px', 'marginLeft': '-3px'}, "fast")
+            .parent().find('.username')
+            .animate({'fontSize': '12px', 'width': '65px', 'marginTop': '51px', 'marginLeft': '-3px'}, "fast")
+            .fadeTo('fast', 1.0);
         }).mouseout(function() {
-            $(this).animate({'fontSize': '11px'}, "fast");
-            $(this).fadeTo('fast', 0.7);
+            $(this).animate({'marginRight': '20px', 'marginBottom': '10px'}, "fast")
+            .find('img')
+            .animate({'width': '58px', 'height': '58px', 'marginTop': '0px', 'marginLeft': '0px'}, "fast")
+            .parent().find('.username')
+            .animate({'fontSize': '11px', 'width': '58px', 'marginTop': '47px', 'marginLeft': '0px'}, "fast")
+            .fadeTo('fast', 0.7);
         });
     });
     $('#event_form').ajaxForm({

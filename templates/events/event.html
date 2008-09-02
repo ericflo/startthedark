@@ -1,9 +1,9 @@
 {% load gravatar %}
 {% load events_tags %}
+{% load profile_tags %}
 <div class="event_container{% if event_num %} event_num_{{ event_num }}{% endif %}">
     <div class="grid_10 alpha event">
-        {% gravatar event.creator 58 %}
-        <a class="username" href="">{{ event.creator.username|truncate:"12" }}</a>
+        {% person event.creator %}
         <span class="description_{{ event.description_size }}">{{ event.description }}</span>
     </div>
     <div class="grid_1 person_count">
@@ -20,9 +20,9 @@
                     <input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}{{ request.path }}{% endif %}" />
                     <input type="hidden" name="event_id" value="{{ event.id }}" />
                     {% if attending %}
-                        <input class="attendance unattend" type="submit" value="No Longer Attending" />
+                        <input class="attendance unattend" type="submit" value="&#10003;" />
                     {% else %}
-                        <input class="attendance attend" type="submit" value="I Will Attend" />
+                        <input class="attendance attend" type="submit" value="+" />
                     {% endif %}
                 </form>
             {% else %}
