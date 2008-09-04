@@ -37,6 +37,13 @@ class Event(models.Model):
         Event.objects.today().filter(creator=self.creator).update(latest=False)
         super(Event, self).save(**kwargs)
     
+    def today(self):
+        now = datetime.now()
+        start = datetime.min.replace(year=now.year, month=now.month,
+            day=now.day)
+        end = (start + timedelta(days=1)) - timedelta.resolution
+        return self.creation_date >= start and self.creation_date <= end
+    
     def description_size(self):
         if len(self.description) < 120:
             return 'small'
