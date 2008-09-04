@@ -16,15 +16,23 @@
                     <ul id="nav">
                         <li><a href="{% url ev_tonight %}">Tonight</a></li>
                         <li><a href="{% url ev_archive %}">Archive</a></li>
-                        <li><span>Everyone</span>
-                            <ul id="subnav_everyone">
+                        <li><span class="subnav_everyone">Everyone</span>
+                            <ul class="subnav_everyone">
                                 <li><a href="{% url ev_everyone_tonight %}">Tonight</a></li>
                                 <li><a href="{% url ev_everyone_archive %}">Archive</a></li>
                             </ul>
                         </li>
                         {% if user.is_authenticated %}
+                            <li><span class="subnav_friends">Friends</span>
+                                <ul class="subnav_friends">
+                                    <li><a href="{% url sg_find_add %}">Find and Add Friends</a></li>
+                                    <li><a href="{% url sg_followers user.username %}">People You Follow</a></li>
+                                    <li><a href="{% url sg_following user.username %}">People Following You</a></li>
+                                    <li><a href="{% url sg_mutual user.username %}">Mutual Friends</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{% url auth_password_change %}">Settings</a></li>
                             <li><a href="{% url auth_logout %}">Logout</a></li>
-                            <li><a href="{% url auth_password_change %}">Change Password</a></li>
                         {% else %}
                             <li><a href="{% url auth_login %}">Login</a></li>
                             <li><a href="{% url registration_register %}">Register</a></li>
@@ -57,6 +65,9 @@
         <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.form.js"></script>
         <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.livequery.min.js"></script>
         <script type="text/javascript" src="{{ MEDIA_URL }}js/global.js"></script>
+        <!--[if lt IE 7]>
+            <script type="text/javascript" src="{{ MEDIA_URL }}js/unitpngfix.js"></script>
+        <![endif]-->
         {% block extra_body %}{% endblock %}
     </body>
 </html>

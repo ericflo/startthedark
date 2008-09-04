@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     (r'^events/', include('events.urls')),
     (r'^friends/', include('socialgraph.urls')),
     (r'^accounts/', include('registration.urls')),
+    (r'^profile/', include('profile.urls')),
     (r'^admin/(.*)', admin.site.root),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
 )

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load profile_tags %}
+
+{% block main_content %}
+    <form class="standard" method="GET">
+        <ul>
+            <li><label for="id_q">Search for your friend&rsquo;s name or e-mail address: </label>
+                {{ search_form.q }}</li>
+        </ul>
+        <input type="submit" value="User Search">
+    </form>
+    {% if q %}
+        <h1>Results</h1>
+        {% ifequal user_count 0 %}
+            <p>No results for the given query</p>
+        {% else %}
+            {% for person, friend in users %}
+                <div class="follow">
+                    {% person person %}
+                    {% ifnotequal person user %}
+                        <form method="POST" action="{% if friend %}{% url sg_unfollow person.username %}{% else %}{% url sg_follow person.username %}{% endif %}">
+                            <input type="submit" value="{% if friend %}Unfollow{% else %}Follow{% endif %}" />
+                        </form>
+                    {% endifnotequal %}
+                </div>
+            {% endfor %}
+        {% endifequal %}
+    {% endif %}
+{% endblock %}

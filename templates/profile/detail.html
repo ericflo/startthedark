@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load profile_tags %}
+{% load events_tags %}
+
+{% block main_content %}
+    <h1>Details for User: {{ profile_user.username }}</h1>
+    <div class="follow">
+        {% person profile_user %}
+        {% ifnotequal profile_user user %}
+            <form method="POST" action="{% if friend %}{% url sg_unfollow profile_user.username %}{% else %}{% url sg_follow profile_user.username %}{% endif %}">
+                <input type="submit" value="{% if friend %}Unfollow{% else %}Follow{% endif %}" />
+            </form>
+        {% endifnotequal %}
+    </div>
+    <div class="clear"></div>
+    
+    <h2>People who Follow {{ profile_user.username }}: </h2>
+    {% ifequal people_following_user.count 0 %}
+        <p>Nobody yet.</p>
+    {% else %}
+        {% for person in people_following_user %}
+            {% person person %}
+        {% endfor %}
+    {% endifequal %}
+    <div class="clear"></div>
+    
+    <h2>People who {{ profile_user.username }} Follows: </h2>
+    {% ifequal people_user_follows.count 0 %}
+        <p>Nobody yet.</p>
+    {% else %}
+        {% for person in people_user_follows %}
+            {% person person %}
+        {% endfor %}
+    {% endifequal %}
+    <div class="clear"></div>
+    
+    <h2>Mutual Followers</h2>
+    {% ifequal mutual_followers.count 0 %}
+        <p>Nobody yet.</p>
+    {% else %}
+        {% for person in mutual_followers %}
+            {% person person %}
+        {% endfor %}
+    {% endifequal %}
+    <div class="clear"></div>
+    
+    <h2>Last {{ num_events_created }} Event{{ num_events_created|pluralize }} Created by {{ profile_user.username }}</h2>
+    {% for event in events_created %}
+        {% event event counter.get_int %}
+    {% endfor %}
+    <div class="clear"></div>
+    
+    <h2>Last {{ num_events_attended }} Event{{ num_events_attended|pluralize }} Attended by {{ profile_user.username }}</h2>
+    {% for event in events_attended %}
+        {% event event counter.get_int %}
+    {% endfor %}
+{% endblock %}

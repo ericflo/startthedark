@@ -11,10 +11,10 @@ class UserLink(models.Model):
         return "%s is following %s" % (self.from_user.username, 
             self.to_user.username)
 
-    def save(self):
+    def save(self, **kwargs):
         if self.from_user == self.to_user:
             raise ValueError("Cannot follow yourself.")
-        super(UserLink, self).save()
+        super(UserLink, self).save(**kwargs)
     
     class Meta:
         unique_together = (('to_user', 'from_user'),)

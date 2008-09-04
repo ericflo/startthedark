@@ -28,12 +28,21 @@ $(function() {
     }).mouseout(function() {
         $(this).fadeTo('fast', 0.6);
     });
-    $('#nav > li > span').mouseover(function() {
+    $('#nav > li > span.subnav_everyone').mouseover(function() {
         var pos = $('#nav > li > span').position();
-        $('#nav > li > ul')
+        $('#nav > li > ul.subnav_everyone')
             .css('position', 'absolute')
             .css('top', pos['top'] + 35 + 'px')
             .css('left', pos['left'] - 22 + 'px')
+            .css('display', 'block')
+            .css('z-index', '999');
+    });
+    $('#nav > li > span.subnav_friends').mouseover(function() {
+        var pos = $('#nav > li > span').position();
+        $('#nav > li > ul.subnav_friends')
+            .css('position', 'absolute')
+            .css('top', pos['top'] + 35 + 'px')
+            .css('left', pos['left'] + 90 + 'px')
             .css('display', 'block')
             .css('z-index', '999');
     });
@@ -52,6 +61,7 @@ $(function() {
             return false;
         });
     });
+    /* TODO: Uncomment this if you want to be annoyed.
     $('div.person').livequery(function() {
         $(this).mouseover(function() {
             $(this).animate({'marginRight': '16px', 'marginBottom': '0px'}, "fast")
@@ -69,6 +79,7 @@ $(function() {
             .fadeTo('fast', 0.7);
         });
     });
+    */
     $('#event_form').ajaxForm({
         clearForm: true,
         beforeSubmit: function(formData, jqForm, options) {

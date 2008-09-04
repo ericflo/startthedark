@@ -1,10 +1,21 @@
 {% extends "base.html" %}
-{% load pagination_tags %}
+{% load profile_tags %}
 
 {% block main_content %}
-    {% autopaginate friends %}
-    {% for friend in friends %}
-        <p>{{ friend }}</p>
-    {% endfor %}
-    {% paginate %}
+    {% ifequal list_type "followers" %}
+        <h1>People Who You Follow:</h1>
+    {% else %}
+        {% ifequal list_type "following" %}
+            <h1>People Following You:</h1>
+        {% else %}
+            <h1>People Who You Follow, Who Also Follow You:</h1>
+        {% endifequal %}
+    {% endifequal %}
+    {% ifequal friends.count 0 %}
+        <p>No friends listed</p>
+    {% else %}
+        {% for friend in friends %}
+            {% person friend %}
+        {% endfor %}
+    {% endifequal %}
 {% endblock %}

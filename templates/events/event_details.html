@@ -8,7 +8,13 @@
     <div class="clear"></div>
     {% event event 1 %}
     <h2 id="attendees_title">Attendees</h2>
-    {% for person in event.attendees.all %}
-        {% person person %}
-    {% endfor %}
+    {% with event.attendees.all as attendees %}
+        {% ifequal attendees.count 0 %}
+            <p>No attendees listed</p>
+        {% else %}
+            {% for person in event.attendees.all %}
+                {% person person %}
+            {% endfor %}
+        {% endifequal %}
+    {% endwith %}
 {% endblock %}

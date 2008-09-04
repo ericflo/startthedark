@@ -9,7 +9,7 @@
             <li>If you still have troubles loogging in, maybe you haven&rsquo;t activated your account.  Check your e-mail and look for an activation key, or <a href="{% url registration_resend_activation %}">have it re-sent to you</a>.</li>
         </ul>
     {% endif %}
-    <form method="POST" action="">
+    <form method="POST" class="standard" action="">
         <ul>
             <li><label for="id_username">Username: </label>{{ form.username }}</li>
             <li><label for="id_password">Password: </label>{{ form.password }}</li>

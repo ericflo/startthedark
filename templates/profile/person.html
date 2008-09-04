@@ -1,7 +1,7 @@
 {% load gravatar %}
 {% load events_tags %}
 <div class="person">
-    <a href="">
+    <a href="{% url profile_detail user.username %}">
         <span class="username">{{ user.username|truncate:"12" }}</span>
         {% gravatar user 58 %}
     </a>

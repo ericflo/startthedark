@@ -33,9 +33,9 @@ class Event(models.Model):
             return self.description[:76] + ' ...'
         return self.description[:80]
     
-    def save(self):
+    def save(self, **kwargs):
         Event.objects.today().filter(creator=self.creator).update(latest=False)
-        super(Event, self).save()
+        super(Event, self).save(**kwargs)
     
     def today(self):
         now = datetime.now()

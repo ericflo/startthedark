@@ -1,5 +1,6 @@
 /* General Stuff */
 body { background: #000000 url('../img/background.jpg') no-repeat 50% 0; color: white; }
+h2 { font-size: 18px; }
 
 /* Logo */
 #logo a { 
@@ -89,7 +90,7 @@ ul.messages li a.clear_button {
 }
 
 /* Person */
-div.person { margin: 1px 20px 10px 0px; float: left; }
+div.person { margin: 1px 10px 10px 0px; float: left; }
 div.person a { text-decoration: none; }
 div.person .username { 
     float: left;
@@ -117,12 +118,10 @@ div.event span.description_small {
     padding: 20px 10px 0px 0px;
 }
 div.event span.description_medium { 
-    text-indent: -58px;
     display: block;
     padding: 10px 10px 0px 0px;
 }
 div.event span.description_large { 
-    text-indent: -58px;
     display: block;
     padding: 2px 10px 0px 0px;
 }
@@ -281,6 +280,40 @@ p.event_time_first {
 #my_event_title { margin-top: 20px; margin-bottom: 0px; }
 #all_events_title { margin-top: 20px; }
 #attendees_title { margin-top: 20px; }
+
+/* Forms */
+form.standard { 
+    background: url('../img/form_bg.png');
+    border: 1px solid #565169;
+    padding: 10px;
+    margin: 10px;
+}
+form.standard input, form textarea {
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 14px;
+    background: url('../img/formfield_bg.png');
+    border: 1px solid #AfAAC4;
+}
+form.standard ul li { list-style-type: none; margin-left: 0px; }
+form.standard ul li label { display: block; }
+form.standard a { color: #FF4444; text-decoration: none; }
+
+/* Follow/Unfollow */
+div.follow { 
+    width: 80px;
+    height: 80px;
+    display: table-cell;
+    display: inline-block;
+}
+div.follow div.person { margin-bottom: 0px; margin-left: 8px; }
+div.follow input { 
+    background: url('../img/formfield_bg.png');
+    border: 1px solid #afaac4;
+    width: 78px;
+    color: white;
+    font-weight: bold;
+}
 
 /* Pagination */
 .pagination { 
