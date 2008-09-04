@@ -3,13 +3,16 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.query import QuerySet
 
+def today():
+    now = datetime.now()
+    start = datetime.min.replace(year=now.year, month=now.month,
+        day=now.day)
+    end = (start + timedelta(days=1)) - timedelta.resolution
+    return (start, end)
+
 class EventQuerySet(QuerySet):
     def today(self):
-        now = datetime.now()
-        start = datetime.min.replace(year=now.year, month=now.month,
-            day=now.day)
-        end = (start + timedelta(days=1)) - timedelta.resolution
-        return self.filter(creation_date__range=(start, end))
+        return self.filter(creation_date__range=today())
 
 class EventManager(models.Manager):
     def get_query_set(self):
@@ -38,10 +41,7 @@ class Event(models.Model):
         super(Event, self).save(**kwargs)
     
     def today(self):
-        now = datetime.now()
-        start = datetime.min.replace(year=now.year, month=now.month,
-            day=now.day)
-        end = (start + timedelta(days=1)) - timedelta.resolution
+        (start, end) = today()
         return self.creation_date >= start and self.creation_date <= end
     
     def description_size(self):
