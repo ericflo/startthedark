@@ -31,7 +31,7 @@
                                     <li><a href="{% url sg_mutual user.username %}">Mutual Friends</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{% url auth_password_change %}">Settings</a></li>
+                            <li><a href="{% url settings %}">Settings</a></li>
                             <li><a href="{% url auth_logout %}">Logout</a></li>
                         {% else %}
                             <li><a href="{% url auth_login %}">Login</a></li>
@@ -57,6 +57,7 @@
         </div>
         <ul id="footer">
             <li><a href="">About Us</a></li>
+            <li><a href="">Open Source</a></li>
             <li><a href="">Contact</a></li>
             <li><a href="">Help</a></li>
             <li><span>&copy; 2008 StartTheDark</span></li>

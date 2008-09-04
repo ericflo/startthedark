@@ -103,3 +103,4 @@ def find_and_add(request):
         context,
         context_instance = RequestContext(request)
     )
+find_and_add = login_required(find_and_add)

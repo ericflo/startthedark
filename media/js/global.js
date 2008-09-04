@@ -34,8 +34,8 @@ $(function() {
             .css('position', 'absolute')
             .css('top', pos['top'] + 35 + 'px')
             .css('left', pos['left'] - 22 + 'px')
-            .css('display', 'block')
-            .css('z-index', '999');
+            .css('z-index', '999')
+            .fadeIn('fast');
     });
     $('#nav > li > span.subnav_friends').mouseover(function() {
         var pos = $('#nav > li > span').position();
@@ -43,14 +43,14 @@ $(function() {
             .css('position', 'absolute')
             .css('top', pos['top'] + 35 + 'px')
             .css('left', pos['left'] + 90 + 'px')
-            .css('display', 'block')
-            .css('z-index', '999');
+            .css('z-index', '999')
+            .fadeIn('fast');
     });
     $('#nav > li > ul').bind("mouseleave", function() {
-        $('#nav > li > ul').css('display', 'none');
+        $('#nav > li > ul').fadeOut('fast');
     });
     $(document).click(function() {
-        $('#nav > li > ul').css('display', 'none');
+        $('#nav > li > ul').fadeOut('fast');
     });
     $('ul.messages li').livequery(function() {
         $(this).append('<a class="clear_button" href="#">Clear</a>');
