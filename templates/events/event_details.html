@@ -2,6 +2,8 @@
 {% load events_tags %}
 {% load profile_tags %}
 
+{% block title %}{{ event.description }} - {{ block.super }}{% endblock %}
+
 {% block main_content %}
     <h2 id="event_title">Event</h2>
     <p id="going_question">going?</p>

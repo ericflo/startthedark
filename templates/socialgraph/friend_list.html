@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load profile_tags %}
 
+{% block title %}Friend List - {{ block.super }}{% endblock %}
+
 {% block main_content %}
     {% ifequal list_type "followers" %}
         <h1>People Who You Follow:</h1>

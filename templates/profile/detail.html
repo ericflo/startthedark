@@ -2,6 +2,8 @@
 {% load profile_tags %}
 {% load events_tags %}
 
+{% block title %}Content Not Found - {{ profile_user.username|capfirst }}{% endblock %}
+
 {% block main_content %}
     <h1>Details for User: {{ profile_user.username }}</h1>
     <div class="follow">

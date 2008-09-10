@@ -3,6 +3,8 @@
 {% load humanize %}
 {% load events_tags %}
 
+{% block title %}Archive - {{ block.super }}{% endblock %}
+
 {% block main_content %}
     {% autopaginate events %}
     {% if events %}
