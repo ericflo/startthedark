@@ -13,13 +13,13 @@ def link_nginx():
     sudo('ln -s /etc/nginx/sites-available/startthedark.com /etc/nginx/sites-enabled/startthedark.com')
     sudo('/etc/init.d/nginx reload')
 
-def deploy():
-    'Deploy startthedark.'
+def rebuild_prod_css():
     local('bash make_prod_css.sh')
-    set(fab_fail = 'ignore')
     local('git commit -a -m "Rebuilt Prod CSS For Commit"')
     local('git push origin master')
-    set(fab_fail = 'abort')
+
+def deploy():
+    'Deploy startthedark.'
     run('cd /var/www/startthedark.com/startthedark; git pull;')
     run('cd /var/www/startthedark.com/startthedark; /usr/bin/python manage.py syncdb')
     sudo('/etc/init.d/apache2 reload')
