@@ -3,10 +3,10 @@
 {% block title %}Open Source - {{ block.super }}{% endblock %}
 
 {% block main_content %}
-<p class="info">StartTheDark.com was created during the process of recording a series of screencasts related to Django.
-These screencasts cover every aspect of creating a Django website--from starting the initial project, creating the models,
-views, and templates, to deploying it onto a server.  
-These screencasts will be available on <a href="http://www.eflorenzano.com/blog/tag/screencast/">my blog</a>, however at the time of writing this page, they are not yet available.</p>
-<p class="info">The source code to this site is freely available online, and is licensed in the new BSD license.
-More information about the source code can be found on our <a href="{% url opensource %}">open source page</a>.</p>
+<p class="info">StartTheDark.com is both a website, and an open source project.
+The website is a running instance of the open source project, but the source is released in the new BSD license,
+and can be found online at <a href="http://github.com/ericflo/startthedark/tree/master">GitHub</a>.
+Everything that you see on the site, including the media assets (cascading style sheets, images, and Javascript), are available
+in that project.</p>
+<p class="info">If there is a significant amount of requests, I will also release this on google code.</p>
 {% endblock %}
