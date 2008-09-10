@@ -9,6 +9,10 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'views.index', name="index"),
+    url(r'^about/$', 'django.views.generic.simple.direct_to_template', 
+        {'template': 'misc/about.html'}, name="about"),
+    url(r'^open-source/$', 'django.views.generic.simple.direct_to_template', 
+        {'template': 'misc/open_source.html'}, name="opensource"),
     (r'^events/', include('events.urls')),
     (r'^friends/', include('socialgraph.urls')),
     (r'^accounts/', include('registration.urls')),
