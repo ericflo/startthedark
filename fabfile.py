@@ -17,7 +17,7 @@ def deploy():
     'Deploy startthedark.'
     local('bash make_prod_css.sh')
     local('git commit -a -m "Rebuilt Prod CSS For Commit"')
-    local('git push')
+    local('git push origin master')
     run('cd /var/www/startthedark.com/startthedark; git pull;')
     run('cd /var/www/startthedark.com/startthedark; /usr/bin/python manage.py syncdb')
     sudo('/etc/init.d/apache2 reload')

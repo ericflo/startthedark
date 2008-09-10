@@ -12,6 +12,7 @@ from django.core.urlresolvers import reverse
 
 def events(request, template_name='tonight.html', today=True, all_events=False):
     events = Event.objects.filter(latest=True).order_by('-creation_date')
+    following = []
     if request.user.is_authenticated():
         my_events = Event.objects.filter(latest=True)
         my_events = my_events.filter(creator=request.user) | my_events.filter(
@@ -25,12 +26,12 @@ def events(request, template_name='tonight.html', today=True, all_events=False):
     else:
         my_events = []
     if today:
-        print "TODAY"
         events = events.today().order_by('-start_date')
         my_events = my_events.today()
     context = {
         'events': events,
         'my_events': my_events,
+        'following': following,
         'event_form': EventForm(),
         'today': today,
         'all_events': all_events,
