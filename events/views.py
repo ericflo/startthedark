@@ -16,13 +16,13 @@ def events(request, template_name='tonight.html', today=True, all_events=False):
     if request.user.is_authenticated():
         my_events = Event.objects.filter(latest=True)
         my_events = my_events.filter(creator=request.user) | my_events.filter(
-            attendance__user=request.user)
+            attendance__user=request.user).distinct()
         events = events.exclude(creator=request.user)
         events = events.exclude(attendance__user=request.user)
         if not all_events:
             following = request.user.following_set.all().values('to_user')
             events = events.filter(creator__in=[i['to_user'] for i in following]) | \
-                events.filter(attendance__user__in=[i['to_user'] for i in following])
+                events.filter(attendance__user__in=[i['to_user'] for i in following]).distinct()
     else:
         my_events = Event.objects.none()
     if today:
