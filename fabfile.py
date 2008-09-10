@@ -1,7 +1,6 @@
 set(
     fab_hosts = ['startthedark.com'],
     fab_user = 'startthedark',
-    fab_fail = 'warn',
 )
 
 def unlink_nginx():
@@ -17,8 +16,10 @@ def link_nginx():
 def deploy():
     'Deploy startthedark.'
     local('bash make_prod_css.sh')
+    set(fab_fail = 'ignore')
     local('git commit -a -m "Rebuilt Prod CSS For Commit"')
     local('git push origin master')
+    set(fab_fail = 'abort')
     run('cd /var/www/startthedark.com/startthedark; git pull;')
     run('cd /var/www/startthedark.com/startthedark; /usr/bin/python manage.py syncdb')
     sudo('/etc/init.d/apache2 reload')
