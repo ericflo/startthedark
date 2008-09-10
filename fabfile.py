@@ -1,6 +1,7 @@
 set(
     fab_hosts = ['startthedark.com'],
     fab_user = 'startthedark',
+    fab_fail = 'warn',
 )
 
 def unlink_nginx():
