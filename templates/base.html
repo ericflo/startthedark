@@ -26,6 +26,7 @@
                             <li><span class="subnav_friends">Friends</span>
                                 <ul class="subnav_friends">
                                     <li><a href="{% url sg_find_add %}">Find and Add Friends</a></li>
+                                    <li><a href="{% url user_list %}">Latest Users</a></li>
                                     <li><a href="{% url sg_followers user.username %}">People You Follow</a></li>
                                     <li><a href="{% url sg_following user.username %}">People Following You</a></li>
                                     <li><a href="{% url sg_mutual user.username %}">Mutual Friends</a></li>
