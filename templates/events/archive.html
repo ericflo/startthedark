@@ -22,5 +22,5 @@
     {% endif %}
     {% if user.is_authenticated and not following %}
         <p class="info">It appears that you have not listed any friends yet.  This site will be much more interesting if you <a href="{% url sg_find_add %}">add some friends</a></p>
-    {% endif }
+    {% endif %}
 {% endblock %}
