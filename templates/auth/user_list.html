@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 {% load profile_tags %}
 {% load pagination_tags %}
+{% load socialgraph_tags %}
 
 {% block title %}Newest Users - {{ block.super }}{% endblock %}
 
 {% block main_content %}
     <h1>Newest Users</h1>
+    {% friends_for_user user as friend_dict %}
     {% for person in object_list %}
+        {% dict_entry_for_item person.username from friend_dict as friend %}
         <div class="follow">
             {% person person %}
             {% ifnotequal person user %}
