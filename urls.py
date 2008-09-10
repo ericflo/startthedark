@@ -1,7 +1,9 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.views.generic.list_detail import object_list
 
 admin.autodiscover()
 
@@ -17,7 +19,7 @@ urlpatterns = patterns('',
     (r'^friends/', include('socialgraph.urls')),
     (r'^accounts/', include('registration.urls')),
     url(r'^accounts/latest/$',
-        'django.views.generic.list_detail.object_list',
+        login_required(object_list),
         {'queryset': User.objects.order_by('-date_joined'),
         'paginate_by': 50, 'allow_empty': True},
         name='user_list'),
