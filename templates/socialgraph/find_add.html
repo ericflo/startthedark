@@ -12,7 +12,7 @@
     {% if q %}
         <h1>Results</h1>
         {% ifequal user_count 0 %}
-            <p>No results for the given query</p>
+            <p class="info">No results for the given query</p>
         {% else %}
             {% for person, friend in users %}
                 <div class="follow">

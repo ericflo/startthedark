@@ -77,7 +77,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.doc.XViewMiddleware',
     'pagination.middleware.PaginationMiddleware',
-    'middleware.DebugFooter',
 )
 
 ROOT_URLCONF = 'startthedark.urls'

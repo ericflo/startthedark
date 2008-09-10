@@ -16,18 +16,18 @@ def events(request, template_name='tonight.html', today=True, all_events=False):
         my_events = Event.objects.filter(latest=True)
         my_events = my_events.filter(creator=request.user) | my_events.filter(
             attendance__user=request.user)
+        events = events.exclude(creator=request.user)
+        events = events.exclude(attendance__user=request.user)
         if not all_events:
             following = request.user.following_set.all().values('to_user')
-            events = events.exclude(creator=request.user)
-            events = events.exclude(attendance__user=request.user)
             events = events.filter(creator__in=[i['to_user'] for i in following]) | \
                 events.filter(attendance__user__in=[i['to_user'] for i in following])
     else:
         my_events = []
     if today:
+        print "TODAY"
         events = events.today().order_by('-start_date')
-        if not all_events:
-            my_events = my_events.today()
+        my_events = my_events.today()
     context = {
         'events': events,
         'my_events': my_events,
