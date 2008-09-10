@@ -24,7 +24,7 @@ def events(request, template_name='tonight.html', today=True, all_events=False):
             events = events.filter(creator__in=[i['to_user'] for i in following]) | \
                 events.filter(attendance__user__in=[i['to_user'] for i in following])
     else:
-        my_events = []
+        my_events = Event.objects.none()
     if today:
         events = events.today().order_by('-start_date')
         my_events = my_events.today()
