@@ -20,7 +20,7 @@ class EventManager(models.Manager):
     
     def today(self):
         return self.get_query_set().today()
-
+    
 class Event(models.Model):
     description = models.TextField()
     start_date = models.DateTimeField(null=True, blank=True)

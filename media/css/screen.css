@@ -1,5 +1,9 @@
 /* General Stuff */
-body { background: #000000 url('../img/background.jpg') no-repeat 50% 0; color: white; }
+body { 
+    background: #000000 url('../img/background.jpg') no-repeat 50% 0; 
+    color: white;
+    font-family: sans-serif;
+}
 h2 { font-size: 18px; }
 
 /* Logo */
@@ -35,6 +39,53 @@ h2 { font-size: 18px; }
     padding-right: 20px;
 }
 
+/* Index */
+h3.index_title { 
+    float: left; 
+    width: 100px;
+    height: 165px;
+    text-indent: -9000px;
+    background-image: url('../img/numbers.png');
+}
+p.index_step {
+    background: url('../img/form_bg.png');
+    border: 1px solid #565169;
+    padding: 10px;
+    margin: 10px;
+    margin-left: 100px;
+}
+p.index_step a {
+    text-decoration: none;
+    color: #FF4444;
+}
+.step_detail {
+    margin-left: 100px;
+    text-indent: -9000px;
+    margin-bottom: 10px;
+    border: 2px solid #FF6666;
+}
+h3#step_1 { background-position: 0px; }
+a#step_1_detail {
+    display: block;
+    height: 165px;
+    width: 265px;
+    background-image: url('../img/step1.png');
+}
+
+h3#step_2 { background-position: 230px; }
+p#step_2_detail {
+    height: 98px;
+    width: 788px;
+    background-image: url('../img/step2.png');
+}
+
+h3#step_3 { background-position: 105px; }
+p#step_3_detail {
+    height: 119px;
+    width: 385px;
+    background-image: url('../img/step3.png');
+}
+
 /* Messages */
 ul.messages li { 
     display: block;
@@ -64,7 +115,7 @@ ul.messages li a.clear_button {
 
 /* New Event */
 #event_description_field {
-    background: url('../img/starry_background.png') no-repeat 50% 0;
+    background: url('../img/starry_background.png') 50% 0;
     height: 60px;
 }
 #event_description_field textarea {
@@ -315,6 +366,16 @@ div.follow input {
     font-weight: bold;
 }
 
+/* Settings */
+#settings a { 
+    color: #FF4444;
+    font-size: 18px;
+    text-decoration: none;
+}
+#settings a:hover {
+    color: #FF2222;
+}
+
 /* Pagination */
 .pagination { 
     font-weight: bold; 
@@ -351,7 +412,7 @@ div.follow input {
     width: 100%; 
     background: url('../img/list_gradient.png') no-repeat 50% 0; 
     text-align: center;
-    font-size: 18px;
+    font-size: 14px;
     padding: 8px 0px 8px 0px;
     float: left;
 }

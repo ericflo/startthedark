@@ -6,6 +6,12 @@
     <form method="POST" class="standard" action="">
         <ul>
             {{ form.as_ul }}
+            
+            <li><label for="id_username">username:</label> <input id="id_username" type="text" class="required" name="username" maxlength="30" /></li>
+            <li><label for="id_email">email address:</label> <input id="id_email" type="text" class="required" name="email" maxlength="75" /></li>
+            <li><label for="id_password1">password:</label> <input id="id_password1" type="password" class="required" name="password1" /></li>
+            <li><label for="id_password2">password (again):</label> <input id="id_password2" type="password" class="required" name="password2" /></li>
+            
         </ul>
         <input type="submit" value="Register" />
     </form>

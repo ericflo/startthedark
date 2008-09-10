@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1 id="index_question">What is StartTheDark.com?</h1>
+<h2 id="index_response">A place to see what your friends are doing tonight!</h2>
+
+<h3 id="step_1" class="index_title">Step 1:</h3>
+<p class="index_step"><a href="{% url registration_register %}">Sign up</a> and join up with all your friends.</p>
+<a id="step_1_detail" class="step_detail" href="{% url registration_register %}">Register Now</a>
+<div class="clear"></div>
+
+<h3 id="step_2" class="index_title">Step 2:</h3>
+<p class="index_step">Let your friends know what you&rsquo;re going to be doing tonight.</p>
+<p id="step_2_detail" class="step_detail">The event input makes it quick to let your friends know how you are doing.</p>
+<div class="clear"></div>
+
+<h3 id="step_3" class="index_title">Step 3:</h3>
+<p class="index_step">Simply click once to show that you&rsquo;re going to join your friend&rsquo;s event.</p>
+<p id="step_3_detail" class="step_detail">Clicking the &lquo;plus&rquo; button says that you will be going to do the same thing as your friend.</p>
+<div class="clear"></div>
+{% endblock %}
