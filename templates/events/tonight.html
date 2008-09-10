@@ -24,7 +24,7 @@
                     {% event event counter.get_int %}
                 {% endfor %}
             {% else %}
-                <p>No Event Submitted Yet</p>
+                <p class="info">No Event Submitted Yet</p>
             {% endif %}
         </div>
     {% endif %}
@@ -45,6 +45,6 @@
             {% endfor %}
         {% endfor %}
     {% else %}
-        <p>There are no events listed.</p>
+        <p class="info">There are no events listed.</p>
     {% endif %}
 {% endblock %}

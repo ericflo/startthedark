@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'django.views.generic.simple.direct_to_template', {'template': 'index.html'}, name="index"),
+    url(r'^$', 'views.index', name="index"),
     (r'^events/', include('events.urls')),
     (r'^friends/', include('socialgraph.urls')),
     (r'^accounts/', include('registration.urls')),

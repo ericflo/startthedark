@@ -5,6 +5,19 @@ body {
     font-family: "Helvetica", sans-serif;
 }
 h2 { font-size: 18px; }
+p.success, p.info, p.failure, ul.errorlist li {
+    padding: 10px;
+    border: 1px solid #28203A;
+    margin: 0px 10px 0px 10px;
+}
+p.success { background-image: url('../img/success_bg.png'); }
+p.info { background-image: url('../img/info_bg.png'); }
+p.failure { background-image: url('../img/error_bg.png'); }
+ul.errorlist li { 
+    background-image: url('../img/error_bg.png');
+    list-style-type: none;
+}
+a { text-decoration: none; color: #FF4444; }
 
 /* Logo */
 #logo a { 
@@ -42,6 +55,9 @@ h2 { font-size: 18px; }
 }
 
 /* Index */
+h1#index_question {
+    color: #FFFF99;
+}
 h3.index_title { 
     float: left; 
     width: 100px;
@@ -49,21 +65,24 @@ h3.index_title {
     text-indent: -9000px;
     background-image: url('../img/numbers.png');
 }
+h2#index_response { 
+    margin-left: 120px;
+    font-size: 30px;
+    color: #FFFF55;
+}
 p.index_step {
     background: url('../img/form_bg.png');
     border: 1px solid #565169;
     padding: 10px;
     margin: 10px;
     margin-left: 120px;
-}
-p.index_step a {
-    text-decoration: none;
-    color: #FF4444;
+    font-weight: bolder;
+    font-size: 14px;
 }
 .step_detail {
     margin-left: 120px;
     text-indent: -9000px;
-    border: 2px solid #FF6666;
+    border: 2px solid #FF4444;
 }
 h3#step_1 { background-position: 5px; }
 a#step_1_detail {
@@ -77,8 +96,10 @@ a#step_1_detail {
 h3#step_2 { background-position: 280px; }
 p#step_2_detail {
     height: 98px;
-    width: 788px;
+    width: 805px;
     background-image: url('../img/step2.png');
+    background-position: 15px;
+    background-repeat: no-repeat;
 }
 
 h3#step_3 { background-position: 125px; }
@@ -219,10 +240,6 @@ div.person_count a {
     display: block;
     padding-top: 8px;
 }
-.login_to_attend a {
-    text-decoration: none;
-    color: #FF4444;
-}
 .event_num_1 .event, .event_num_1 .person_count,
 .event_num_1 .attend, .event_num_1 .unattend, .event_num_1 .login_to_attend {
     background: url('../img/bg_1.png');
@@ -350,7 +367,6 @@ form.standard input, form textarea {
 }
 form.standard ul li { list-style-type: none; margin-left: 0px; }
 form.standard ul li label { display: block; }
-form.standard a { color: #FF4444; text-decoration: none; }
 
 /* Follow/Unfollow */
 div.follow { 
@@ -369,11 +385,7 @@ div.follow input {
 }
 
 /* Settings */
-#settings a { 
-    color: #FF4444;
-    font-size: 18px;
-    text-decoration: none;
-}
+#settings a { font-size: 18px;}
 #settings a:hover {
     color: #FF2222;
 }
