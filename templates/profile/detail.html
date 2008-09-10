@@ -16,7 +16,7 @@
     
     <h2>People who Follow {{ profile_user.username }}: </h2>
     {% ifequal people_following_user.count 0 %}
-        <p>Nobody yet.</p>
+        <p class="info">Nobody yet.</p>
     {% else %}
         {% for person in people_following_user %}
             {% person person %}
@@ -26,7 +26,7 @@
     
     <h2>People who {{ profile_user.username }} Follows: </h2>
     {% ifequal people_user_follows.count 0 %}
-        <p>Nobody yet.</p>
+        <p class="info">Nobody yet.</p>
     {% else %}
         {% for person in people_user_follows %}
             {% person person %}
@@ -36,7 +36,7 @@
     
     <h2>Mutual Followers</h2>
     {% ifequal mutual_followers.count 0 %}
-        <p>Nobody yet.</p>
+        <p class="info">Nobody yet.</p>
     {% else %}
         {% for person in mutual_followers %}
             {% person person %}

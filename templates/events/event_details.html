@@ -10,7 +10,7 @@
     <h2 id="attendees_title">Attendees</h2>
     {% with event.attendees.all as attendees %}
         {% ifequal attendees.count 0 %}
-            <p>No attendees listed</p>
+            <p class="info">No attendees listed</p>
         {% else %}
             {% for person in event.attendees.all %}
                 {% person person %}

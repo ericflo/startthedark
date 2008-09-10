@@ -12,7 +12,7 @@
         {% endifequal %}
     {% endifequal %}
     {% ifequal friends.count 0 %}
-        <p>No friends listed</p>
+        <p class="info">No friends listed</p>
     {% else %}
         {% for friend in friends %}
             {% person friend %}
