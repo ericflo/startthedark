@@ -99,6 +99,7 @@ INSTALLED_APPS = (
     'startthedark.socialgraph',
     'pagination',
     'gravatar',
+    'registration',
     'profile',
 )
 
