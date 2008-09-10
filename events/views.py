@@ -27,7 +27,10 @@ def events(request, template_name='tonight.html', today=True, all_events=False):
         my_events = Event.objects.none()
     if today:
         events = events.today().order_by('-start_date')
-        my_events = my_events.today()
+        try:
+            my_events = my_events.today()
+        except AttributeError:
+            pass
     context = {
         'events': events,
         'my_events': my_events,
