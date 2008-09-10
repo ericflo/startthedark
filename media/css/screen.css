@@ -11,7 +11,7 @@ p.success, p.info, p.failure, ul.errorlist li {
     margin: 0px 10px 0px 10px;
 }
 p.success { background-image: url('../img/success_bg.png'); }
-p.info { background-image: url('../img/info_bg.png'); }
+p.info { background-image: url('../img/info_bg.png'); margin-bottom: 1em; }
 p.failure { background-image: url('../img/error_bg.png'); }
 ul.errorlist li { 
     background-image: url('../img/error_bg.png');
