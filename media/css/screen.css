@@ -2,7 +2,7 @@
 body { 
     background: #000000 url('../img/background.jpg') no-repeat 50% 0; 
     color: white;
-    font-family: sans-serif;
+    font-family: "Helvetica", sans-serif;
 }
 h2 { font-size: 18px; }
 
@@ -22,7 +22,7 @@ h2 { font-size: 18px; }
     padding-top: 12px;
 }
 #nav { padding: 6px 0px 6px 0px;}
-#nav li { list-style-type: none; margin: 0px 12px 0px 12px; }
+#nav li { list-style-type: none; margin: 0px 6px 0px 6px; }
 #nav a, #nav span { 
     color: #FFFFFF; 
     opacity: 0.6;
@@ -30,6 +30,8 @@ h2 { font-size: 18px; }
     -moz-opacity: 0.6;
     text-decoration: none; 
     font-size: 22px;
+    font-weight: bold;
+    font-variant: small-caps;
 }
 #nav > li { display: inline; }
 #nav > li > ul { display: none; }
@@ -52,34 +54,34 @@ p.index_step {
     border: 1px solid #565169;
     padding: 10px;
     margin: 10px;
-    margin-left: 100px;
+    margin-left: 120px;
 }
 p.index_step a {
     text-decoration: none;
     color: #FF4444;
 }
 .step_detail {
-    margin-left: 100px;
+    margin-left: 120px;
     text-indent: -9000px;
-    margin-bottom: 10px;
     border: 2px solid #FF6666;
 }
-h3#step_1 { background-position: 0px; }
+h3#step_1 { background-position: 5px; }
 a#step_1_detail {
     display: block;
     height: 165px;
     width: 265px;
+    margin-bottom: 10px;
     background-image: url('../img/step1.png');
 }
 
-h3#step_2 { background-position: 230px; }
+h3#step_2 { background-position: 280px; }
 p#step_2_detail {
     height: 98px;
     width: 788px;
     background-image: url('../img/step2.png');
 }
 
-h3#step_3 { background-position: 105px; }
+h3#step_3 { background-position: 125px; }
 p#step_3_detail {
     height: 119px;
     width: 385px;
