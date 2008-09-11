@@ -27,6 +27,11 @@ FRIEND_FUNCTION_MAP = {
 }
 
 def friend_list(request, list_type, username):
+    """
+    Renders a list of friends, as returned by the function retrieved from the
+    ``FRIEND_FUNCTION_MAP``, given the user specified by the username in the
+    URL.
+    """
     user = get_object_or_404(User, username=username)
     context = {
         'list_type': list_type,
@@ -39,6 +44,10 @@ def friend_list(request, list_type, username):
     )
 
 def follow(request, username):
+    """
+    Adds a "following" edge from the authenticated user to the user specified by
+    the username in the URL.
+    """
     user = get_object_or_404(User, username=username)
     ul, created = UserLink.objects.get_or_create(from_user=request.user, 
         to_user=user)
@@ -59,6 +68,10 @@ def follow(request, username):
 follow = login_required(follow)
 
 def unfollow(request, username):
+    """
+    Removes a "following" edge from the authenticated user to the user specified
+    by the username in the URL.
+    """
     user = get_object_or_404(User, username=username)
     try:
         ul = UserLink.objects.get(from_user=request.user, to_user=user)
@@ -83,6 +96,11 @@ def unfollow(request, username):
 unfollow = login_required(unfollow)
 
 def find_and_add(request):
+    """
+    A page for finding and adding new friends to follow.  Right now this
+    consists solely of a search box, which given input, renders a list of
+    users who match the search terms.
+    """
     search_form = SearchForm(request.GET or None)
     context = {
         'search_form': search_form,

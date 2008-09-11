@@ -3,15 +3,14 @@ from socialgraph.util import get_people_user_follows
 
 def do_dict_entry_for_item(parser, token):
     """
-    Given an object and a dictionary keyed with object ids - as
-    returned by the ``votes_by_user`` and ``scores_for_objects``
-    template tags - retrieves the value for the given object and
-    stores it in a context variable, storing ``None`` if no value
-    exists for the given object.
+    Given an object and a dictionary keyed with object ids - as returned by the
+    ``friends_for_user`` template tag - retrieves the value for the given object
+    and stores it in a context variable, storing ``None`` if no value exists 
+    for the given object.
 
     Example usage::
 
-        {% dict_entry_for_item widget from vote_dict as vote %}
+        {% dict_entry_for_item user.username from friend_dict as friend %}
     """
     bits = token.contents.split()
     if len(bits) != 6:
@@ -41,7 +40,14 @@ class DictEntryForItemNode(template.Node):
         return ''
 
 def do_friends_for_user(parser, token):
-    "{% friends_for_user user as friend_dict %}"
+    """
+    Gets the users that the given user follows, and saves that into a
+    dictionary keyed by username.
+    
+    Usage:
+    
+        {% friends_for_user user as friend_dict %}
+    """
     bits = token.contents.split()
     if len(bits) != 4:
         raise template.TemplateSyntaxError(

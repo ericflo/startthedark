@@ -6,6 +6,12 @@ from socialgraph.util import get_mutual_followers
 from events.models import Event, Attendance
 
 def detail(request, username=None):
+    """
+    Renders information about a single user's profile.  This includes
+    information about who follows them, who they follow, mutual followers, the
+    latest events created, and whether the currently logged in user is a friend
+    of the user to render.
+    """
     user = get_object_or_404(User, username=username)
     events_created = list(Event.objects.filter(creator=user, latest=True).order_by('-creation_date')[:10])
     attended = Attendance.objects.filter(user=user).order_by('-registration_date')[:10]
