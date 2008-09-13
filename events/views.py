@@ -10,57 +10,66 @@ from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.views.decorators.http import require_POST
 from django.core.urlresolvers import reverse
 
-def events(request, template_name='tonight.html', today=True, all_events=False):
+def tonight(request, everyone=True):
     """
-    Renders a list of ``Event`` instances, which are selected mainly by two 
-    parameters:
+    Renders a list of ``Event`` instances, which are selected mainly based on
+    two factors:
     
-    today:
-        True if the events should be for today only.  In this case, we also
-        order the ``Event`` instances descending by ``start_date``.
+    The ``everyone`` parameter:
+        If this is set to False, then we filter down the event list to be only
+        those events that were created by or attended by one of the people who
+        the user follows.
     
-    all_events:
-        True if it should be a list of events for everyone.  If ``all_events``
-        is set to False, then it will just be a list of events for the logged
-        in user and his/her friends.
+    The user's authentication:
+        If the user is authenticated, the user's events are separated from the
+        other events.
     """
-    events = Event.objects.filter(latest=True).order_by('-creation_date')
-    following = []
+    events = Event.objects.today().filter(latest=True)
     if request.user.is_authenticated():
-        # If the user is logged in, start building up a list of ``Event``
-        # instances that the user has created or will attend.
-        my_events = Event.objects.filter(latest=True)
-        my_events = my_events.filter(creator=request.user) | my_events.filter(
+        my_events = events.filter(creator=request.user) | events.filter(
             attendance__user=request.user)
-        my_events = my_events.distinct()
-        events = events.exclude(creator=request.user)
-        events = events.exclude(attendance__user=request.user)
-        if not all_events:
-            # If it's not a list of all events, list just the events that will
-            # happen for the authenticated user's friends.
-            following = request.user.following_set.all().values('to_user')
-            events = events.filter(creator__in=[i['to_user'] for i in following]) | \
-                events.filter(attendance__user__in=[i['to_user'] for i in following])
-            events = events.distinct()
+        events = events.exclude(creator=request.user).exclude(
+            attendance__user=request.user)
     else:
         my_events = Event.objects.none()
-    if today:
-        # If it is supposed to be today only, filter the results to just today.
-        events = events.today().order_by('-start_date')
-        try:
-            my_events = my_events.today()
-        except AttributeError:
-            pass
+    if not everyone:
+        following = request.user.following_set.all().values('to_user')
+        events = events.filter(creator__in=[i['to_user'] for i in following]) |\
+            events.filter(attendance__user__in=[i['to_user'] for i in following])
+    events = events.order_by('-start_date', '-creation_date').distinct()
     context = {
         'events': events,
         'my_events': my_events,
-        'following': following,
         'event_form': EventForm(),
-        'today': today,
-        'all_events': all_events,
     }
     return render_to_response(
-        'events/%s' % template_name,
+        'events/tonight.html',
+        context,
+        context_instance = RequestContext(request)
+    )
+
+def archive(request, everyone=True):
+    """
+    Renders a list of ``Event`` instances, which are selected mainly based on
+    one parameter:
+    
+    ``everyone``:
+        If this is set to False, then we filter down the event list to be only
+        those events that were created by or attended by one of the people who
+        the user follows.
+    """
+    events = Event.objects.filter(latest=True) | Event.objects.filter(
+        attendance__user__isnull=False)
+    if not everyone:
+        following = request.user.following_set.all().values('to_user')
+        events = events.filter(creator__in=[i['to_user'] for i in following]) |\
+            events.filter(attendance__user__in=[i['to_user'] for i in following])
+    events = events.order_by('-creation_date', '-start_date').distinct()
+    context = {
+        'events': events
+    }
+    return render_to_response(
+        'events/archive.html',
         context,
         context_instance = RequestContext(request)
     )
