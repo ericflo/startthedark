@@ -33,9 +33,10 @@ def tonight(request, everyone=True):
     else:
         my_events = Event.objects.none()
     if not everyone:
-        following = request.user.following_set.all().values('to_user')
-        events = events.filter(creator__in=[i['to_user'] for i in following]) |\
-            events.filter(attendance__user__in=[i['to_user'] for i in following])
+        following = [i['to_user'] for i in
+            request.user.following_set.all().values('to_user')]
+        events = events.filter(creator__in=following) | events.filter(
+            attendance__user__in=following)
     events = events.order_by('-start_date', '-creation_date').distinct()
     context = {
         'events': events,
@@ -61,9 +62,11 @@ def archive(request, everyone=True):
     events = Event.objects.filter(latest=True) | Event.objects.filter(
         attendance__user__isnull=False)
     if not everyone:
-        following = request.user.following_set.all().values('to_user')
-        events = events.filter(creator__in=[i['to_user'] for i in following]) |\
-            events.filter(attendance__user__in=[i['to_user'] for i in following])
+        following = [i['to_user'] for i in
+            request.user.following_set.all().values('to_user')]
+        following.append(request.user.id)
+        events = events.filter(creator__in=following) | events.filter(
+            attendance__user__in=following)
     events = events.order_by('-creation_date', '-start_date').distinct()
     context = {
         'events': events
