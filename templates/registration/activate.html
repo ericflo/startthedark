@@ -5,6 +5,7 @@
 {% block main_content %}
     {% if account %}
         <p class="success">You have successfully activated!  Thanks for becoming a member of the site.  Please use the links above to explore.</p>
+        <p>Now that you have activated, please <a href="{% url sg_find_add %}">check to see if you have friends who are registered on the site</a> as well.</p>
     {% else %}
         <p class="failure">We could not activate your account.  Please make sure that you have clicked the correct link in your e-mail or typed in the correct address.  If you get this message repeatedly, <a href="mailto:floguy@gmail.com">contact us</a> so that we can set your account up correctly.</p>
     {% endif %}

@@ -63,11 +63,12 @@ def archive(request, everyone=True):
     """
     events = Event.objects.filter(latest=True) | Event.objects.filter(
         attendance__user__isnull=False)
-    if everyone:
-        following = None
-    else:
+    if request.user.is_authenticated():
         following = [i['to_user'] for i in
             request.user.following_set.all().values('to_user')]
+    else:
+        following = None
+    if not everyone:
         following.append(request.user.id)
         events = events.filter(creator__in=following) | events.filter(
             attendance__user__in=following)
