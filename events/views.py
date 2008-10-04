@@ -11,33 +11,17 @@ from django.views.decorators.http import require_POST
 from django.core.urlresolvers import reverse
 
 def tonight(request, everyone=True):
-    """
-    Renders a list of ``Event`` instances, which are selected mainly based on
-    two factors:
-    
-    The ``everyone`` parameter:
-        If this is set to False, then we filter down the event list to be only
-        those events that were created by or attended by one of the people who
-        the user follows.
-    
-    The user's authentication:
-        If the user is authenticated, the user's events are separated from the
-        other events.
-    """
     events = Event.objects.today().filter(latest=True)
     if request.user.is_authenticated():
         my_events = events.filter(creator=request.user) | events.filter(
             attendance__user=request.user)
         events = events.exclude(creator=request.user).exclude(
             attendance__user=request.user)
-        following = request.user.following_set.all().values_list('to_user', 
+        following = request.user.following_set.all().values_list('to_user',
             flat=True)
     else:
         my_events = Event.objects.none()
         following = None
-    if not everyone:
-        events = events.filter(creator__in=following) | events.filter(
-            attendance__user__in=following)
     events = events.order_by('-start_date', '-creation_date').distinct()
     context = {
         'events': events,
@@ -48,24 +32,15 @@ def tonight(request, everyone=True):
     return render_to_response(
         'events/tonight.html',
         context,
-        context_instance = RequestContext(request)
+        context_instance = RequestContext(request),
     )
 
 def archive(request, everyone=True):
-    """
-    Renders a list of ``Event`` instances, which are selected mainly based on
-    one parameter:
-    
-    ``everyone``:
-        If this is set to False, then we filter down the event list to be only
-        those events that were created by or attended by one of the people who
-        the user follows.
-    """
     events = Event.objects.filter(latest=True) | Event.objects.filter(
         attendance__user__isnull=False)
     if request.user.is_authenticated():
-        following = request.user.following_set.all().values_list('to_user', 
-            flat=True)
+        following = list(request.user.following_set.all().values_list('to_user',
+            flat=True))
     else:
         following = None
     if not everyone:
@@ -80,7 +55,7 @@ def archive(request, everyone=True):
     return render_to_response(
         'events/archive.html',
         context,
-        context_instance = RequestContext(request)
+        context_instance = RequestContext(request),
     )
 
 def event(request, id):
