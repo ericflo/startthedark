@@ -30,8 +30,8 @@ def tonight(request, everyone=True):
             attendance__user=request.user)
         events = events.exclude(creator=request.user).exclude(
             attendance__user=request.user)
-        following = [i['to_user'] for i in
-            request.user.following_set.all().values('to_user')]
+        following = request.user.following_set.all().values_list('to_user', 
+            flat=True)
     else:
         my_events = Event.objects.none()
         following = None
@@ -64,8 +64,8 @@ def archive(request, everyone=True):
     events = Event.objects.filter(latest=True) | Event.objects.filter(
         attendance__user__isnull=False)
     if request.user.is_authenticated():
-        following = [i['to_user'] for i in
-            request.user.following_set.all().values('to_user')]
+        following = request.user.following_set.all().values_list('to_user', 
+            flat=True)
     else:
         following = None
     if not everyone:
