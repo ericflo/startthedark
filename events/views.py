@@ -64,8 +64,8 @@ def archive(request, everyone=True):
     events = Event.objects.filter(latest=True) | Event.objects.filter(
         attendance__user__isnull=False)
     if request.user.is_authenticated():
-        following = request.user.following_set.all().values_list('to_user', 
-            flat=True)
+        following = list(request.user.following_set.all().values_list('to_user', 
+            flat=True))
     else:
         following = None
     if not everyone:
