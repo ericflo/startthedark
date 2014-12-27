@@ -104,6 +104,12 @@ def create(request):
         event = form.save(commit=False)
         event.creator = request.user
         guessed_date = None
+		
+		if len(event.description.strip()) == 0: ## To prevent white spaces
+            return render_to_response('event/create.html',{'form':form},
+                              context_instance=RequestContext(request))
+							  
+							  
         # Ransack the description for possible datetime objects.  If we find one
         # then we set start_date as that found datetime.
         for word in event.description.split():
